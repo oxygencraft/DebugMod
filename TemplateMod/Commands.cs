@@ -1,8 +1,10 @@
 ﻿using Hacknet;
+using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XNA = Microsoft.Xna.Framework;
 
 namespace TemplateMod
 {
@@ -459,7 +461,7 @@ namespace TemplateMod
             Computer computer = os.connectedComp;
             computer.
             return false;
-        } */
+        }
         public static bool AddComputer(Hacknet.OS os, string[] args)
         {
             
@@ -467,6 +469,12 @@ namespace TemplateMod
 
 
             Computer computer = new Computer()
+            return false;
+        } */
+        public static bool PlaySFX(Hacknet.OS os, string[] args)
+        {
+            SoundEffect sound = os.content.Load<SoundEffect>(args[1]);
+            sound.Play();
             return false;
         }
     }
