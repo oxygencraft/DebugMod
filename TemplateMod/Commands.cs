@@ -266,10 +266,12 @@ namespace TemplateMod
             
             return false;
         }
-        public static bool ChangeAdminPassword(Hacknet.OS os, string[] args)
+        public static bool ChangeUserDetails(Hacknet.OS os, string[] args)
         {
             Computer computer = os.connectedComp;
-            string newPass = args[1];
+            string oldUser = args[1];
+            string newUser = args[2];
+            string newPass = args[3];
             if (args.Length < 0)
             {
                 os.write("Usage: changeAdminPassword (NewPassword)");
@@ -277,8 +279,8 @@ namespace TemplateMod
             }
             for (int index = 0; index < computer.users.Count; ++index)
             {
-                if (computer.users[index].name.ToLower().Equals("admin"))
-                    computer.users[index] = new UserDetail("admin", newPass, (byte)0);
+                if (computer.users[index].name.ToLower().Equals(oldUser))
+                    computer.users[index] = new UserDetail(newUser, newPass, (byte)0);
             }
             return false;
         }
