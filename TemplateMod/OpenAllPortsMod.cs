@@ -52,6 +52,15 @@ namespace TemplateMod
                 Command.Handler.AddCommand("executeHack", Commands.ExecuteHack, false);
                 Command.Handler.AddCommand("generateExampleAcademicRecord", Commands.GenerateExampleAcadmicRecord, false);
                 Command.Handler.AddCommand("generateExampleMedicalRecord", Commands.GenerateExampleMedicalRecord, false);
+                Command.Handler.AddCommand("changeMusic", Commands.ChangeMusic, false);
+                Command.Handler.AddCommand("crashComputer", Commands.CrashComputer, false);
+                Command.Handler.AddCommand("addProxy", Commands.AddProxy, false);
+                Command.Handler.AddCommand("addFirewall", Commands.AddFirewall, false);
+                Command.Handler.AddCommand("addUser", Commands.AddUser, false);
+                Command.Handler.AddCommand("openPort", Commands.OpenPort, false);
+                Command.Handler.AddCommand("closeAllPorts", Commands.CloseAllPorts, false);
+                Command.Handler.AddCommand("closePort", Commands.ClosePort, false);
+                Command.Handler.AddCommand("removeProxy", Commands.RemoveProxy, false);
             }
 
         }

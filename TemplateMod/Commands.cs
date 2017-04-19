@@ -477,10 +477,5 @@ namespace TemplateMod
             sound.Play();
             return false;
         }
-        public static bool PlayEffect(Hacknet.OS os, string[] args)
-        {
-            OS osExternal = os;
-            return false;
-        }
     }
 }
