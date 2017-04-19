@@ -25,8 +25,8 @@ namespace TemplateMod
             Command.Handler.AddCommand("loseAdmin", Commands.LoseAdmin, true);
             if (DebugEnabled)
             {
-                Command.Handler.AddCommand("deathSeq", Commands.DeathSeq, false);
-                Command.Handler.AddCommand("canDeathSeq", Commands.CancelDeathSeq, false);
+                Command.Handler.AddCommand("startDeathSeq", Commands.DeathSeq, false);
+                Command.Handler.AddCommand("cancelDeathSeq", Commands.CancelDeathSeq, false);
                 Command.Handler.AddCommand("setHomeNodeServer", Commands.SetHomeNodeServer, false);
                 Command.Handler.AddCommand("setHomeAssetServer", Commands.SetHomeAssetServer, false);
                 Command.Handler.AddCommand("debug", Commands.Debug, false);
@@ -48,7 +48,7 @@ namespace TemplateMod
                 Command.Handler.AddCommand("showTerminal", Commands.ShowTerminal, false);
                 Command.Handler.AddCommand("showRAM", Commands.ShowRAM, false);
                 Command.Handler.AddCommand("getUniversalAdmin", Commands.GetUniversalAdmin, false);
-                Command.Handler.AddCommand("changeAdminPassword", Commands.ChangeAdminPassword, false);
+                Command.Handler.AddCommand("changeUserDetails", Commands.ChangeUserDetails, false);
                 Command.Handler.AddCommand("executeHack", Commands.ExecuteHack, false);
                 Command.Handler.AddCommand("generateExampleAcademicRecord", Commands.GenerateExampleAcadmicRecord, false);
                 Command.Handler.AddCommand("generateExampleMedicalRecord", Commands.GenerateExampleMedicalRecord, false);
