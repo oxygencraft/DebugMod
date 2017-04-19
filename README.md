@@ -89,24 +89,42 @@ hideDisplay - Hides display
 
 hideNetMap - Hides NetMap
 
-#hideTerminal - Hides terminal (There is no way to get it back apart from restart the game)
+hideTerminal - Hides terminal (There is no way to get it back apart from restart the game)
 
-#hideRAM - Hides RAM
+hideRAM - Hides RAM
 
-#showDisplay - Shows display
+showDisplay - Shows display
 
-#showNetMap - Shows NetMap
+showNetMap - Shows NetMap
 
-#showTerminal - Shows Terminal
+showTerminal - Shows Terminal
 
-#showRAM - Shows RAM
+showRAM - Shows RAM
 
-#getUniversalAdmin - Gets admin on every computer in game save
+getUniversalAdmin - Gets admin on every computer in game save
 
-#changeAdminPassword - Changes admin password
+changeUserDetails - Changes admin password: Usage: changeUserDetails (OldUsername) (NewUsername) (NewPassword)
 
-#executeHack - Executes a hacker script (Put hacker scripts in Content/HackerScripts)
+executeHack - Executes a hacker script (Put hacker scripts in Content/HackerScripts)
 
-#generateExampleAcademicRecord - Generates an example academic record
+generateExampleAcademicRecord - Generates an example academic record
 
-#generateExampleMedicalRecord - Generates an example medical record
+generateExampleMedicalRecord - Generates an example medical record
+
+changeMusic - Changes music (Music must be .ogg and in Content/)
+
+crashComputer - Crashes computer you are connected to
+
+addProxy - adds proxy to computer you are connected to: Usage: addProxy (TimeInSeconds)
+
+addFirewall - adds firewall to computer you are connected to: Usage: addFirewall (Solution) (Level) [AdditionalTime]
+
+addUser - adds a user to computer you are connected to: Usage: addUser (Username) (Password)
+
+openPort - Opens port on the computer you are connected to: Usage: openPort (PortToOpen)
+
+closeAllPorts - Closes all ports on the computer you are connected to
+
+closePort - Closes port on the computer you are connected to: Usage: closePort (PortToClose)
+
+removeProxy - Removes proxy from the computer you are connected to
