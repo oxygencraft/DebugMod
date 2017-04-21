@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using XNA = Microsoft.Xna.Framework;
 
-namespace TemplateMod
+namespace OpenAllPortsMod
 {
     static class Commands
     {
@@ -274,15 +274,17 @@ namespace TemplateMod
             string oldUser = args[1];
             string newUser = args[2];
             string newPass = args[3];
-            if (args.Length < 0)
+            if (args.Length < 3)
             {
-                os.write("Usage: changeAdminPassword (NewPassword)");
+                os.write("Usage: changeUserDetails (NewPassword)");
                 return false;
             }
             for (int index = 0; index < computer.users.Count; ++index)
             {
                 if (computer.users[index].name.ToLower().Equals(oldUser))
                     computer.users[index] = new UserDetail(newUser, newPass, (byte)0);
+                    UserDetail user = computer.users[index];
+                    user.known = true;
             }
             return false;
         }
@@ -315,8 +317,8 @@ namespace TemplateMod
         }
         public static bool DeleteWhitelistDLL(Hacknet.OS os, string[] args)
         {
-            string ip = args[1];
-            
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.deleteFile(os.thisComputer.ip, "authenticator.dll", );
             return false;
         }
         public static bool ChangeMusic(Hacknet.OS os, string[] args)
@@ -461,21 +463,168 @@ namespace TemplateMod
             Computer computer = os.connectedComp;
             computer.
             return false;
-        }
+        } */
         public static bool AddComputer(Hacknet.OS os, string[] args)
         {
-            
-
-
-
-            Computer computer = new Computer()
+            if (args.Length < 5)
+            {
+                os.write("Usage: addComputer (Name) (IP) (SecurityLevel) (CompType) (ID)");
+                return false;
+            }
+            try
+            {
+                int IsNumber = Convert.ToInt32(args[3]);
+                byte IsByte = Convert.ToByte(args[4]);
+            }
+            catch
+            {
+                os.write("Usage: addComputer (Name) (IP) (SecurityLevel) (CompType) (ID)");
+                return false;
+            }
+            string Name = args[1];
+            string IP = args[2];
+            int SecurityLevel = Convert.ToInt32(args[3]);
+            byte CompType = Convert.ToByte(args[4]);
+            string ID = args[5];
+            Computer computer = new Computer(Name, IP, os.netMap.getRandomPosition(), SecurityLevel, CompType, os);
+            computer.idName = ID;
             return false;
-        } */
+        }
         public static bool PlaySFX(Hacknet.OS os, string[] args)
         {
             SoundEffect sound = os.content.Load<SoundEffect>(args[1]);
             sound.Play();
             return false;
         }
+        public static bool GetMoreRAM(Hacknet.OS os, string[] args)
+        {
+            os.totalRam = 2048;
+            return false;
+        }
+        public static bool SetFaction(Hacknet.OS os, string[] args)
+        {
+            string factionInput = args[1];
+            if (factionInput == "entropy")
+            {
+                os.allFactions.setCurrentFaction("entropy", os);
+            }
+            else if (factionInput == "csec")
+            {
+                os.allFactions.setCurrentFaction("hub", os);
+            }
+            else if (factionInput == "bibliotheque")
+            {
+                os.allFactions.setCurrentFaction("Bibliotheque", os);
+            }
+            else
+            {
+                os.write("Usage: setFaction entropy/csec");
+            }
+            return false;
+        }
+        public static bool TracedBehind250Proxies(Hacknet.OS os, string[] args)
+        {
+            os.traceTracker.start(500f);
+            return false;
+        }
+        public static bool OxygencraftStorageFaciltyCache(Hacknet.OS os, string[] args) // Don't tell anyone about this command, keep it a secret
+        {
+            Computer computer = new Computer("oxygencraft Storage Facility", "4825.18.385.2956", os.netMap.getRandomPosition(), 2000, 2, os);
+            computer.idName = "oxyStorageCache";
+            computer.adminPass = "edhufguHUFHJGHLRWEHU32867837@!^&*$^&#@^&74";
+            computer.admin.IsSuper = true;
+            computer.admin.ResetsPassword = true;
+            computer.addFirewall(25, "ijijUFERHUHUGR2184327567uGgyregyhwuiEHUT43UHI887328", 15);
+            computer.portsNeededForCrack = 13;
+            computer.addProxy(3600);
+            computer.HasTracker = true;
+            computer.traceTime = 45f;
+            computer.ports.Add(25);
+            computer.ports.Add(22);
+            computer.ports.Add(21);
+            computer.ports.Add(80);
+            computer.ports.Add(1433);
+            computer.ports.Add(104);
+            computer.ports.Add(3724);
+            computer.ports.Add(443);
+            computer.ports.Add(6881);
+            computer.ports.Add(192);
+            computer.ports.Add(3659);
+            computer.ports.Add(9418);
+            for (int index = 0; index < computer.users.Count; ++index)
+            {
+                if (computer.users[index].name.ToLower().Equals("admin")) {
+                    UserDetail user = computer.users[index];
+                    if (os.username == "oxygencraft")
+                    {
+                        user.known = true;
+                    }
+                }
+            }
+            Folder bin = computer.files.root.searchForFolder("bin");
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[25], Utils.GetNonRepeatingFilename("SMTPoverflow", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[22], Utils.GetNonRepeatingFilename("SSHCrack", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[21], Utils.GetNonRepeatingFilename("FTPBounce", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[211], Utils.GetNonRepeatingFilename("FTPSprint", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[80], Utils.GetNonRepeatingFilename("WebServerWorm", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[1433], Utils.GetNonRepeatingFilename("SQL_MemCorrupt", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[104], Utils.GetNonRepeatingFilename("KBT_PortTest", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[3724], Utils.GetNonRepeatingFilename("WoWHack", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[443], Utils.GetNonRepeatingFilename("SSLTrojan", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[6881], Utils.GetNonRepeatingFilename("TorrentStreamInjector", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[192], Utils.GetNonRepeatingFilename("PacificPortcrusher", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[3659], Utils.GetNonRepeatingFilename("confloodEOS", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[9418], Utils.GetNonRepeatingFilename("GitTunnel", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[4], Utils.GetNonRepeatingFilename("SecurityTracer", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[9], Utils.GetNonRepeatingFilename("Decypher", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[10], Utils.GetNonRepeatingFilename("DECHead", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[11], Utils.GetNonRepeatingFilename("Clock", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[12], Utils.GetNonRepeatingFilename("TraceKill", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[13], Utils.GetNonRepeatingFilename("eosDeviceScan", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[14], Utils.GetNonRepeatingFilename("themechanger", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[15], Utils.GetNonRepeatingFilename("hacknet", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[16], Utils.GetNonRepeatingFilename("HexClock", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[17], Utils.GetNonRepeatingFilename("Sequencer", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[31], Utils.GetNonRepeatingFilename("KaguyaTrials", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[32], Utils.GetNonRepeatingFilename("SignalScramble", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[33], Utils.GetNonRepeatingFilename("MemForensics", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[34], Utils.GetNonRepeatingFilename("MemDumpGenerator", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[35], Utils.GetNonRepeatingFilename("NetMapOrganizer", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[36], Utils.GetNonRepeatingFilename("ComShell", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[37], Utils.GetNonRepeatingFilename("DNotes", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[38], Utils.GetNonRepeatingFilename("ClockV2", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.crackExeData[39], Utils.GetNonRepeatingFilename("TuneSwap", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.DangerousPacemakerFirmware, Utils.GetNonRepeatingFilename("PacemakerDangerous", ".dll", bin)));
+            bin.files.Add(new FileEntry(PortExploits.ValidPacemakerFirmware, Utils.GetNonRepeatingFilename("PacemakerWorking", ".exe", bin)));
+            bin.files.Add(new FileEntry(PortExploits.ValidAircraftOperatingDLL, Utils.GetNonRepeatingFilename("747FlightSystem", ".dll", bin)));
+            return false;
+        }
+        public static bool DisableEmailIcon(Hacknet.OS os, string[] args)
+        {
+            os.DisableEmailIcon = true;
+            return false;
+        }
+        public static bool EnableEmailIcon(Hacknet.OS os, string[] args)
+        {
+            os.DisableEmailIcon = false;
+            return false;
+        }
+        public static bool NodeRestore(Hacknet.OS os, string[] args)
+        {
+            DLC1SessionUpgrader.ReDsicoverAllVisibleNodesInOSCache(os);
+            return false;
+        }
+        public static bool AddRestoreCircle(Hacknet.OS os, string[] args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            SFX.addCircle(computer.getScreenSpacePosition(), Utils.AddativeWhite * 0.4f, 70f);
+            return false;
+        }
+        /*public static bool WhitelistBypass(Hacknet.OS os, string[] args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            
+            return false;
+        } */
     }
 }

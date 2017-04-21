@@ -1,7 +1,8 @@
 ﻿using System;
 using Command = Pathfinder.Command;
 
-namespace TemplateMod
+
+namespace OpenAllPortsMod
 {
     public class OpenAllPortsMod : Pathfinder.PathfinderMod
     {
@@ -61,6 +62,7 @@ namespace TemplateMod
                 Command.Handler.AddCommand("closeAllPorts", Commands.CloseAllPorts, false);
                 Command.Handler.AddCommand("closePort", Commands.ClosePort, false);
                 Command.Handler.AddCommand("removeProxy", Commands.RemoveProxy, false);
+                Command.Handler.AddCommand("playSFX", Commands.PlaySFX, false);
             }
 
         }
