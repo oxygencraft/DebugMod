@@ -318,7 +318,10 @@ namespace OpenAllPortsMod
         public static bool DeleteWhitelistDLL(Hacknet.OS os, string[] args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
-            computer.deleteFile(os.thisComputer.ip, "authenticator.dll", );
+            List<int> FolderPath = new List<int>();
+            FolderPath.Add(5);
+            Folder folder = computer.files.root.searchForFolder("Whitelist");
+            folder.files.Remove(folder.files[1]);
             return false;
         }
         public static bool ChangeMusic(Hacknet.OS os, string[] args)
@@ -620,11 +623,13 @@ namespace OpenAllPortsMod
             SFX.addCircle(computer.getScreenSpacePosition(), Utils.AddativeWhite * 0.4f, 70f);
             return false;
         }
-        /*public static bool WhitelistBypass(Hacknet.OS os, string[] args)
+        public static bool WhitelistBypass(Hacknet.OS os, string[] args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
-            
+            Folder folder = computer.files.root.searchForFolder("Whitelist");
+            folder.files.Remove(folder.files[2]);
+            folder.files.Add(new FileEntry(os.thisComputer.ip, "list.txt"));
             return false;
-        } */
+        }
     }
 }
