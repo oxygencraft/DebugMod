@@ -7,12 +7,12 @@ namespace OpenAllPortsMod
     {
         public override string GetIdentifier()
         {
-            return "Open All Ports Mod";
+            return "Debug Mod";
         }
 
         public override void Load()
         {
-            Console.WriteLine("Loading Open All Ports Mod");
+            Console.WriteLine("Loading Debug Mod");
         }
 
         public override void LoadContent()
@@ -79,7 +79,7 @@ namespace OpenAllPortsMod
 
         public override void Unload()
         {
-            Console.WriteLine("Unloading Open All Ports Mod");
+            Console.WriteLine("Unloading Debug Mod");
         }
 
     }
