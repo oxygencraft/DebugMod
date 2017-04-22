@@ -154,7 +154,7 @@ namespace OpenAllPortsMod
             string author = args[2];
             string message = args[3];
 
-            if (args.Length < 5)
+            if (args.Length < 3)
             {
                 os.write("Usage: addIRCMessage (ComputerID) (Author) (Message)");
                 return false;
@@ -300,7 +300,7 @@ namespace OpenAllPortsMod
         {
             Computer computer = os.thisComputer;
             Folder folder = os.thisComputer.files.root.searchForFolder("home");
-            string File = "FIRST NAME HERE\n--------------------\nLAST NAME HERE\n--------------------\n male OR female\n--------------------\nDATE OF BIRTH HERE TIME OF BIRTH HERE\n--------------------\nMedical Record\nDate of Birth :: DATE OF BIRTH HERE TIME OF BIRTH HERE\nBlood Type :: BLOOD TYPE HERE\nHeight :: HEIGHT HERE IN CM\n Allergies\nActive Prescriptions :: ACTIVE PRESCRIPTSION HERE\nRecorded Visits :: RECORDED VISTS HERE\nNotes :: NOTES HERE";
+            string File = "FIRST NAME HERE\n--------------------\nLAST NAME HERE\n--------------------\nmale OR female\n--------------------\nDATE OF BIRTH HERE TIME OF BIRTH HERE\n--------------------\nMedical Record\nDate of Birth :: DATE OF BIRTH HERE TIME OF BIRTH HERE\nBlood Type :: BLOOD TYPE HERE\nHeight :: HEIGHT HERE IN CM\n Allergies :: ALLERGIES HERE\nActive Prescriptions :: ACTIVE PRESCRIPTSION HERE\nRecorded Visits :: RECORDED VISTS HERE\nNotes :: NOTES HERE";
             folder.files.Add(new FileEntry(File, "LASTNAMEHERE FIRSTNAMEHERE"));
             return false;
         }
@@ -321,13 +321,13 @@ namespace OpenAllPortsMod
             List<int> FolderPath = new List<int>();
             FolderPath.Add(5);
             Folder folder = computer.files.root.searchForFolder("Whitelist");
-            folder.files.Remove(folder.files[1]);
+            folder.files.Remove(folder.files[0]);
             return false;
         }
         public static bool ChangeMusic(Hacknet.OS os, string[] args)
         {
             string song = args[1];
-            MusicManager.playSongImmediatley("Content/" + song);
+            MusicManager.playSongImmediatley("Content\\" + song);
             return false;
         }
         public static bool CrashComputer(Hacknet.OS os, string[] args)
@@ -447,7 +447,7 @@ namespace OpenAllPortsMod
         public static bool ClosePort(Hacknet.OS os, string[] args)
         {
             Computer computer = os.connectedComp;
-            if (args.Length > 1)
+            if (args.Length < 1)
             {
                 os.write("Usage: closePort (PortToClose)");
                 return false;
@@ -491,6 +491,25 @@ namespace OpenAllPortsMod
             string ID = args[5];
             Computer computer = new Computer(Name, IP, os.netMap.getRandomPosition(), SecurityLevel, CompType, os);
             computer.idName = ID;
+            os.netMap.nodes.Add(computer); // If you are adding a new computer, you must add the object to nodes list
+            return false;
+        }
+        public static bool DefineComputer(Hacknet.OS os, string[] args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            string Action = args[2];
+            string ActionArgs = args[3];
+
+            if (Action == "tracetime")
+            {
+                float TraceTime;
+                float.TryParse(ActionArgs, out TraceTime);
+                computer.traceTime = TraceTime;
+            } else if (Action == "isadminsuper"){
+                bool TrueOrFalse;
+                bool.TryParse(ActionArgs, out TrueOrFalse);
+                computer.admin.IsSuper = TrueOrFalse ? true : false;
+            }
             return false;
         }
         public static bool PlaySFX(Hacknet.OS os, string[] args)
@@ -542,10 +561,6 @@ namespace OpenAllPortsMod
             computer.addProxy(3600);
             computer.HasTracker = true;
             computer.traceTime = 45f;
-            computer.ports.Add(25);
-            computer.ports.Add(22);
-            computer.ports.Add(21);
-            computer.ports.Add(80);
             computer.ports.Add(1433);
             computer.ports.Add(104);
             computer.ports.Add(3724);
@@ -600,6 +615,7 @@ namespace OpenAllPortsMod
             bin.files.Add(new FileEntry(PortExploits.DangerousPacemakerFirmware, Utils.GetNonRepeatingFilename("PacemakerDangerous", ".dll", bin)));
             bin.files.Add(new FileEntry(PortExploits.ValidPacemakerFirmware, Utils.GetNonRepeatingFilename("PacemakerWorking", ".exe", bin)));
             bin.files.Add(new FileEntry(PortExploits.ValidAircraftOperatingDLL, Utils.GetNonRepeatingFilename("747FlightSystem", ".dll", bin)));
+            os.netMap.nodes.Add(computer);
             return false;
         }
         public static bool DisableEmailIcon(Hacknet.OS os, string[] args)
@@ -627,8 +643,9 @@ namespace OpenAllPortsMod
         {
             Computer computer = Programs.getComputer(os, args[1]);
             Folder folder = computer.files.root.searchForFolder("Whitelist");
-            folder.files.Remove(folder.files[2]);
+            folder.files.Remove(folder.files[1]);
             folder.files.Add(new FileEntry(os.thisComputer.ip, "list.txt"));
+            os.execute("connect " + computer.ip);
             return false;
         }
     }
