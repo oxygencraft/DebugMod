@@ -69,6 +69,7 @@ setHomeAssetServer - Sets home assets server
 debug - gives all executables in the game (You can't use port exploits that open unhackable ports)
 
 revealAll - Reveals all computers in game save
+
 addIRCMessage - Adds IRC Message to server: Usage: addIRCMessage (ComputerID) (Author) (Message)
 
 strikerAttack - Starts Striker hack
