@@ -62,7 +62,7 @@ namespace OpenAllPortsMod
                 Command.Handler.AddCommand("closePort", Commands.ClosePort, false); // Fixed
                 Command.Handler.AddCommand("removeProxy", Commands.RemoveProxy, false); // Works
                 Command.Handler.AddCommand("playSFX", Commands.PlaySFX, false); // Works
-                Command.Handler.AddCommand("DeleteWhitelistDLL", Commands.DeleteWhitelistDLL, false); // Works
+                Command.Handler.AddCommand("deleteWhitelistDLL", Commands.DeleteWhitelistDLL, false); // Works
                 Command.Handler.AddCommand("addComputer", Commands.AddComputer, false); // Works
                 Command.Handler.AddCommand("getMoreRAM", Commands.GetMoreRAM, false); // Works
                 Command.Handler.AddCommand("setFaction", Commands.SetFaction, false); // Works
@@ -72,7 +72,7 @@ namespace OpenAllPortsMod
                 Command.Handler.AddCommand("enableEmailIcon", Commands.EnableEmailIcon, false); // Works
                 Command.Handler.AddCommand("nodeRestore", Commands.NodeRestore, false); // Unknown
                 Command.Handler.AddCommand("addWhiteCircle", Commands.AddRestoreCircle, false); // Works
-                Command.Handler.AddCommand("whitelistBypass", Commands.WhitelistBypass, false);
+                //Command.Handler.AddCommand("whitelistBypass", Commands.WhitelistBypass, false);
             }
 
         }

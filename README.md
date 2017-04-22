@@ -128,3 +128,23 @@ closeAllPorts - Closes all ports on the computer you are connected to
 closePort - Closes port on the computer you are connected to: Usage: closePort (PortToClose)
 
 removeProxy - Removes proxy from the computer you are connected to
+
+playSFX - Plays a sound effect, root directory is Content: Usage: playSFX (PathToSoundEffect eg. SFX/EmailSound.xnb)
+
+DeleteWhitelistDLL - Deletes authenticator.dll from a whitelist server or whitlist protected server (Usage: DeleteWhitelistDLL (IPOrIDOrName))
+
+addComputer - Adds a computer on the fly: Usage: addComputer (Name) (IP) (SecurityLevel) (CompType) (ID)
+
+getMoreRAM - Sets available RAM to 2048
+
+setFaction - Sets faction according to argument one: setFaction entropy/csec/bibliotheque
+
+tracedBehind250Proxies - Trace of 500 secs
+
+disableEmailIcon - Disables the email icon like the Kaguya Trials
+
+enableEmailIcon - Enables the email icon
+
+nodeRestore - Restores nodes like when you click disable tracking in the dlc credits server
+
+addWhiteCircle - Maybe addes the circle when each node is restored
