@@ -69,6 +69,7 @@ setHomeAssetServer - Sets home assets server
 debug - gives all executables in the game (You can't use port exploits that open unhackable ports)
 
 revealAll - Reveals all computers in game save
+
 addIRCMessage - Adds IRC Message to server: Usage: addIRCMessage (ComputerID) (Author) (Message)
 
 strikerAttack - Starts Striker hack
@@ -131,7 +132,7 @@ removeProxy - Removes proxy from the computer you are connected to
 
 playSFX - Plays a sound effect, root directory is Content: Usage: playSFX (PathToSoundEffect eg. SFX/EmailSound.xnb)
 
-DeleteWhitelistDLL - Deletes authenticator.dll from a whitelist server or whitlist protected server (Usage: DeleteWhitelistDLL (IPOrIDOrName))
+deleteWhitelistDLL - Deletes authenticator.dll from a whitelist server or whitelist protected server: Usage: DeleteWhitelistDLL (IPOrIDOrName)
 
 addComputer - Adds a computer on the fly: Usage: addComputer (Name) (IP) (SecurityLevel) (CompType) (ID)
 

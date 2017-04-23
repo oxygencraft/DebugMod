@@ -255,7 +255,7 @@ namespace OpenAllPortsMod
         {
             List<Computer> computerList = os.netMap.nodes;
             string str = os.thisComputer.ip;
-            for (int index = 0; index < computerList.Count; ++index)
+            for (int index = 0; index <= computerList.Count; ++index)
             {
                 computerList[index].adminIP = os.thisComputer.ip;
             }
@@ -646,6 +646,137 @@ namespace OpenAllPortsMod
             folder.files.Remove(folder.files[1]);
             folder.files.Add(new FileEntry(os.thisComputer.ip, "list.txt"));
             os.execute("connect " + computer.ip);
+            return false;
+        }
+        public static bool SetTheme(Hacknet.OS os, string[] args)
+        {
+            OSTheme Theme;
+            string ThemeInput = args[1];
+            if (ThemeInput == "TerminalOnly")
+            {
+                Theme = OSTheme.TerminalOnlyBlack;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "Blue") {
+                Theme = OSTheme.HacknetBlue;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "Teal")
+            {
+                Theme = OSTheme.HacknetTeal;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "Yellow")
+            {
+                Theme = OSTheme.HacknetYellow;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "Green")
+            {
+                Theme = OSTheme.HackerGreen;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "White")
+            {
+                Theme = OSTheme.HacknetWhite;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "Purple")
+            {
+                Theme = OSTheme.HacknetPurple;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "Mint")
+            {
+                Theme = OSTheme.HacknetMint;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "Colamaeleon")
+            {
+                Theme = OSTheme.Colamaeleon;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "GreenCompact")
+            {
+                Theme = OSTheme.GreenCompact;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "Riptide")
+            {
+                Theme = OSTheme.Riptide;
+                ThemeManager.switchTheme(os, Theme);
+            } else if (ThemeInput == "Riptide2")
+            {
+                Theme = OSTheme.Riptide2;
+                ThemeManager.switchTheme(os, Theme);
+            } else
+            {
+                os.write("Usage: setTheme: (Theme)\nValid Options: TerminalOnly,Blue,Teal,Yellow,Green,White,Purple,Mint,Colamaeleon,GreenCompact,Riptide,Riptide2");
+            }
+            return false;
+        }
+        public static bool SetCustomTheme(Hacknet.OS os, string[] args)
+        {
+            ThemeManager.switchTheme(os, args[1]);
+            return false;
+        }
+        public static bool LinkComputer(OS os, string[] args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Computer computer2 = Programs.getComputer(os, args[2]);
+            try
+            {
+                string IsComputer = computer2.adminPass;
+            }
+            catch
+            {
+                os.write("Usage: linkComputer: (SourceIP) (RemoteIP)");
+            }
+            computer.links.Add(os.netMap.nodes.IndexOf(computer2));
+            return false;
+        }
+        public static bool UnlinkComputer(Hacknet.OS os, string[] args)
+        {
+            Computer computer1 = Programs.getComputer(os, args[1]);
+            Computer computer2 = Programs.getComputer(os, args[2]);
+            computer1.links.Remove(os.netMap.nodes.IndexOf(computer2));
+            return false;
+        }
+        public static bool LoseAllNodes(Hacknet.OS os, string[] args)
+        {
+            for (int index = 1; index < os.netMap.nodes.Count; ++index)
+                os.netMap.visibleNodes.Remove(index);
+
+
+            return false;
+        }
+        public static bool LoseNode(Hacknet.OS os, string[] args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            int CompToRemove = os.netMap.nodes.IndexOf(computer);
+            os.netMap.visibleNodes.Remove(CompToRemove);
+            return false;
+        }
+        public static bool RevealNode(Hacknet.OS os, string[] args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            int CompToReveal = os.netMap.nodes.IndexOf(computer);
+            os.netMap.visibleNodes.Add(CompToReveal);
+            return false;
+        }
+        public static bool RemoveComputer(Hacknet.OS os, string[] args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            int CompToRemove = os.netMap.nodes.IndexOf(computer);
+            os.netMap.visibleNodes.Remove(CompToRemove);
+            os.netMap.nodes.Remove(computer);
+            return false;
+        }
+        public static bool ResetIP(Hacknet.OS os, string[] args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.ip = NetworkMap.generateRandomIP();
+            return false;
+        }
+        public static bool ResetPlayerCompIP(Hacknet.OS os, string[] args)
+        {
+            os.thisComputerIPReset();
+            return false;
+        }
+        public static bool SetIP(Hacknet.OS os, string[] args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.ip = args[2];
             return false;
         }
     }

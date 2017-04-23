@@ -72,7 +72,18 @@ namespace OpenAllPortsMod
                 Command.Handler.AddCommand("enableEmailIcon", Commands.EnableEmailIcon, false); // Works
                 Command.Handler.AddCommand("nodeRestore", Commands.NodeRestore, false); // Unknown
                 Command.Handler.AddCommand("addWhiteCircle", Commands.AddRestoreCircle, false); // Works
-                //Command.Handler.AddCommand("whitelistBypass", Commands.WhitelistBypass, false);
+                Command.Handler.AddCommand("whitelistBypass", Commands.WhitelistBypass, false); // Works
+                Command.Handler.AddCommand("setTheme", Commands.SetTheme, false);
+                Command.Handler.AddCommand("setCustomTheme", Commands.SetCustomTheme, false);
+                Command.Handler.AddCommand("linkComputer", Commands.LinkComputer, false);
+                Command.Handler.AddCommand("unlinkComputer", Commands.UnlinkComputer, false);
+                Command.Handler.AddCommand("loseAllNodes", Commands.LoseAllNodes, false);
+                Command.Handler.AddCommand("loseNode", Commands.LoseNode, false);
+                Command.Handler.AddCommand("revealNode", Commands.RevealNode, false);
+                Command.Handler.AddCommand("removeComputer", Commands.RemoveComputer, false);
+                Command.Handler.AddCommand("resetIP", Commands.ResetIP, false);
+                Command.Handler.AddCommand("resetPlayerCompIP", Commands.ResetPlayerCompIP, false);
+                Command.Handler.AddCommand("setIP", Commands.SetTheme, false);
             }
 
         }
