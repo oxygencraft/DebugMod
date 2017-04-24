@@ -8,7 +8,7 @@ namespace OpenAllPortsMod
 
         public string GetIdentifier()
         {
-            return "Debug Mod 2.0";
+            return "Debug Mod";
         }
 
         public string Identifier => GetIdentifier();

@@ -749,15 +749,36 @@ namespace OpenAllPortsMod
         public static bool LoseAllNodes(Hacknet.OS os, List<string> args)
         {
             for (int index = 1; index < os.netMap.nodes.Count; ++index)
+            {
+                Computer computer = os.netMap.nodes[index];
+                XNA.Vector2 Pos = computer.getScreenSpacePosition();
+                List<TraceKillExe.PointImpactEffect> ImpactEffects = new List<TraceKillExe.PointImpactEffect>();
+                ImpactEffects.Add(new TraceKillExe.PointImpactEffect()
+                {
+                    location = Pos,
+                    scaleModifier = (float)(3.0 + (computer.securityLevel > 2 ? 1.0 : 0.0)),
+                    cne = new ConnectedNodeEffect(os, true),
+                    timeEnabled = 0.0f,
+                    HasHighlightCircle = true
+                });
                 os.netMap.visibleNodes.Remove(index);
-
-
+            }
             return false;
         }
         public static bool LoseNode(Hacknet.OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             int CompToRemove = os.netMap.nodes.IndexOf(computer);
+            XNA.Vector2 Pos = computer.getScreenSpacePosition();
+            List<TraceKillExe.PointImpactEffect> ImpactEffects = new List<TraceKillExe.PointImpactEffect>();
+            ImpactEffects.Add(new TraceKillExe.PointImpactEffect()
+            {
+                location = Pos,
+                scaleModifier = (float)(3.0 + (computer.securityLevel > 2 ? 1.0 : 0.0)),
+                cne = new ConnectedNodeEffect(os, true),
+                timeEnabled = 0.0f,
+                HasHighlightCircle = true
+            });
             os.netMap.visibleNodes.Remove(CompToRemove);
             return false;
         }
@@ -772,6 +793,16 @@ namespace OpenAllPortsMod
         {
             Computer computer = Programs.getComputer(os, args[1]);
             int CompToRemove = os.netMap.nodes.IndexOf(computer);
+            XNA.Vector2 Pos = computer.getScreenSpacePosition();
+            List<TraceKillExe.PointImpactEffect> ImpactEffects = new List<TraceKillExe.PointImpactEffect>();
+            ImpactEffects.Add(new TraceKillExe.PointImpactEffect()
+            {
+                location = Pos,
+                scaleModifier = (float)(3.0 + (computer.securityLevel > 2 ? 1.0 : 0.0)),
+                cne = new ConnectedNodeEffect(os, true),
+                timeEnabled = 0.0f,
+                HasHighlightCircle = true
+            });
             os.netMap.visibleNodes.Remove(CompToRemove);
             os.netMap.nodes.Remove(computer);
             return false;
