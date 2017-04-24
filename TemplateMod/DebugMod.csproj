@@ -7,8 +7,8 @@
     <ProjectGuid>{8B86A3C8-3234-405D-BA3C-0E58DA65D8AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TemplateMod</RootNamespace>
-    <AssemblyName>TemplateMod</AssemblyName>
+    <RootNamespace>DebugMod</RootNamespace>
+    <AssemblyName>DebugMod</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -40,12 +40,6 @@
     <Reference Include="FNA">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hacknet\FNA.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="HacknetPathfinder">
       <HintPath>..\lib\HacknetPathfinder.exe</HintPath>
       <Private>False</Private>
