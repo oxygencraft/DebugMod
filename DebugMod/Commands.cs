@@ -152,7 +152,21 @@ namespace OpenAllPortsMod
         {
             string computer = args[1];
             string author = args[2];
-            string message = args[3];
+            string messageInput1 = args[3];
+            string messageInput2 = args[4];
+            string messageInput3 = args[5];
+            string messageInput4 = args[6];
+            string messageInput5 = args[7];
+            string messageInput6 = args[8];
+            string messageInput7 = args[9];
+            string messageInput8 = args[10];
+            string messageInput9 = args[11];
+            string messageInput10 = args[12];
+            string messageInput11 = args[13];
+            string messageInput12 = args[14];
+            string messageInput13 = args[15];
+            string messageInput14 = args[16];
+            string message = messageInput1 + messageInput2 + messageInput3 + messageInput4 + messageInput5 + messageInput6 + messageInput7 + messageInput8 + messageInput9 + messageInput10 + messageInput11 + messageInput12 + messageInput13 + messageInput14;
 
             if (args.Count < 3)
             {
@@ -779,5 +793,56 @@ namespace OpenAllPortsMod
             computer.ip = args[2];
             return false;
         }
+        public static bool ShowFlags(Hacknet.OS os, List<string> args)
+        {
+            os.write(os.Flags.GetSaveString());
+            return false;
+        }
+        public static bool AddFlag(Hacknet.OS os, List<string> args)
+        {
+            os.Flags.AddFlag(args[1]);
+            return false;
+        }
+        public static bool RemoveFlag(Hacknet.OS os, List<string> args)
+        {
+            os.Flags.RemoveFlag(args[1]);
+            return false;
+        }
+        public static bool AuthenticateToIRC(Hacknet.OS os, List<string> args)
+        {
+            os.Flags.RemoveFlag("DLC_Player_IRC_Authenticated");
+            return false;
+        }
+        public static bool AddAgentToIRC(Hacknet.OS os, List<string> args)
+        {
+            Computer computerobject = Programs.getComputer(os, args[1]);
+            if (args.Count < 6)
+            {
+                os.write("Usage: addAgentToIRC (NameORIDORIP) (AgentName) (AgentPassword) (AgentColourRed) (AgentColourBlue) (AgentColourGreen)");
+                return false;
+            }
+            try
+            {
+                string IsComp = computerobject.adminIP;
+                int IsNum = Convert.ToInt32(args[4]);
+                int IsNum2 = Convert.ToInt32(args[5]);
+                int IsNum3 = Convert.ToInt32(args[6]);
+                if (args[2] == null || args[3] == null || args[4] == null || args[5] == null || args[6] == null)
+                {
+                    int ThrowError = Convert.ToInt32("a");
+                }
+            }
+            catch
+            {
+                os.write("Usage: addAgentToIRC (NameORIDORIP) (AgentName) (AgentPassword) (AgentColourRed) (AgentColourBlue) (AgentColourGreen)");
+                return false;
+            }
+            string computer = computerobject.idName;
+            DLCHubServer IRC = Programs.getComputer(os, computer).getDaemon(typeof(DLCHubServer)) as DLCHubServer;
+            XNA.Color colour = new XNA.Color(Convert.ToInt32(args[4]), Convert.ToInt32(args[5]), Convert.ToInt32(args[6]));
+            IRC.AddAgent(args[2], args[3], colour);
+            return false;
+        }
+        
     }
 }

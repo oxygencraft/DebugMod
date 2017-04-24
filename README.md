@@ -1,6 +1,36 @@
 # DebugMod
 
-Command List:
+This is a mod for Hacknet that allows the user to use various debug commands
+
+Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
+
+# New Commands:
+
+setTheme - Sets the theme to argument one: Usage: setTheme [THEME]
+
+Valid Options: TerminalOnly,Blue,Teal,Yellow,Green,White,Purple,Mint,Colamaeleon,GreenCompact,Riptide,Riptide2
+
+setCustomTheme - Sets the theme to a custom one, root path is Content/: Usage: setCustomTheme: (PathToTheme)
+
+linkComputer - Links SourceIP to RemoteIP like when you do scan: Usage: linkComputer (SourceIP) (RemoteIP)
+
+unlinkComputer - Unlinks SourceIP to RemoteIP: Usage: unlinkComputer (SourceIP) (RemoteIP)
+
+loseAllNodes - Makes you lose all nodes except for your player computer
+
+loseNode - Loses the node in argument 1: Usage: loseNode (IPORIDORName)
+
+revealNode - Reveals the node in argument 1: Usage: revealNode (IPORIDORName)
+
+removeComputer - Removes computer in argument 1: Usage: removeComputer (IPORIDORName)
+
+resetIP - Resets the ip of the computer in argument 1 like when you do it in ISP server (This does not complete the ETAS, see resetPlayerCompIP): Usage: resetIP (IPORIDORName)
+
+resetPlayerCompIP - Resets the player computer IP and completes ETAS
+
+setIP - Sets the target computer to the IP in argument 2: Usage: setIP (IPORIDORName) (NewIP)
+
+# Command List:
 
 openAllPorts - Opens all ports on connected computer
 
@@ -11,52 +41,6 @@ solveFirewall - Solves firewall on connected computer
 getAdmin- Gives admin on connected computer
 
 loseAdmin - Lose admin on connected computer
-
-  
- 
- 
- 
- 
- 
- 
- 
- 
-
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Debug Command:
 
 startDeathSeq - Starts ETAS
 
@@ -149,3 +133,4 @@ enableEmailIcon - Enables the email icon
 nodeRestore - Restores nodes like when you click disable tracking in the dlc credits server
 
 addWhiteCircle - Maybe addes the circle when each node is restored
+
