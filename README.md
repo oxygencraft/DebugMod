@@ -2,7 +2,13 @@
 
 This is a mod for Hacknet that allows the user to use various debug commands
 
+To report bugs or feature requests, open an issue in the issues section 
+
 Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
+
+# DebugMod not loading:
+
+This should be fixed now, download 1.7.5b again
 
 # New Commands:
 
