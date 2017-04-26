@@ -6,9 +6,9 @@ To report bugs or feature requests, open an issue in the issues section
 
 Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 
-# DebugMod not loading:
+# Warning:
 
-This should be fixed now, download 1.7.5b again
+Use this at your own risk, this may corrupt saves.
 
 # New Commands:
 
