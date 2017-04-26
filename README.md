@@ -6,6 +6,12 @@ To report bugs or feature requests, open an issue in the issues section
 
 Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 
+# How to report issues:
+
+1. Search before opening, someone else may of opened it.
+2. Make sure that your game files aren't broken before
+3. Tell me how to replicate the bug.
+
 # Warning:
 
 Use this at your own risk, this may corrupt saves.
