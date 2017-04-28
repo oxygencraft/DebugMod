@@ -16,6 +16,10 @@ Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 
 Use this at your own risk, this may corrupt saves.
 
+# Beta Commands:
+
+
+
 # New Commands:
 
 setTheme - Sets the theme to argument one: Usage: setTheme [THEME]

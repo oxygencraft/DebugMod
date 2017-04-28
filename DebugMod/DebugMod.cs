@@ -1,9 +1,9 @@
 ﻿using System;
 using Command = Pathfinder.Command;
 
-namespace OpenAllPortsMod
+namespace DebugMod
 {
-    public class OpenAllPortsMod : Pathfinder.IPathfinderMod
+    public class DebugMod : Pathfinder.IPathfinderMod
     {
 
         public string GetIdentifier()
@@ -55,12 +55,12 @@ namespace OpenAllPortsMod
                 //Command.Handler.AddCommand("executeHack", Commands.ExecuteHack, autoComplete:false);
                 Command.Handler.AddCommand("generateExampleAcademicRecord", Commands.GenerateExampleAcadmicRecord, autoComplete:false); // Works
                 Command.Handler.AddCommand("generateExampleMedicalRecord", Commands.GenerateExampleMedicalRecord, autoComplete:false); // Fixed
-                //Command.Handler.AddCommand("changeMusic", Commands.ChangeMusic, autoComplete:false); // Fixed
+                Command.Handler.AddCommand("changeMusic", Commands.ChangeMusic, autoComplete:false); // Fixed
                 Command.Handler.AddCommand("crashComputer", Commands.CrashComputer, autoComplete:false); // Works
                 Command.Handler.AddCommand("addProxy", Commands.AddProxy, autoComplete:false); // Works
                 Command.Handler.AddCommand("addFirewall", Commands.AddFirewall, autoComplete:false); // Works
                 Command.Handler.AddCommand("addUser", Commands.AddUser, autoComplete:false); // Works
-                //Command.Handler.AddCommand("openPort", Commands.OpenPort, autoComplete:false); 
+                Command.Handler.AddCommand("openPort", Commands.OpenPort, autoComplete:false); 
                 Command.Handler.AddCommand("closeAllPorts", Commands.CloseAllPorts, autoComplete:false); // Works
                 Command.Handler.AddCommand("closePort", Commands.ClosePort, autoComplete:false); // Fixed
                 Command.Handler.AddCommand("removeProxy", Commands.RemoveProxy, autoComplete:false); // Works
@@ -76,7 +76,7 @@ namespace OpenAllPortsMod
                 Command.Handler.AddCommand("nodeRestore", Commands.NodeRestore, autoComplete:false); // Unknown
                 Command.Handler.AddCommand("addWhiteCircle", Commands.AddRestoreCircle, autoComplete:false); // Works
                 Command.Handler.AddCommand("whitelistBypass", Commands.WhitelistBypass, autoComplete:false); // Works
-                Command.Handler.AddCommand("setTheme", Commands.SetTheme, autoComplete:false);
+                Command.Handler.AddCommand("setTheme", Commands.SetTheme, autoComplete:false); 
                 Command.Handler.AddCommand("setCustomTheme", Commands.SetCustomTheme, autoComplete:false);
                 Command.Handler.AddCommand("linkComputer", Commands.LinkComputer, autoComplete:false);
                 Command.Handler.AddCommand("unlinkComputer", Commands.UnlinkComputer, autoComplete:false);
@@ -86,7 +86,22 @@ namespace OpenAllPortsMod
                 Command.Handler.AddCommand("removeComputer", Commands.RemoveComputer, autoComplete:false);
                 Command.Handler.AddCommand("resetIP", Commands.ResetIP, autoComplete:false);
                 Command.Handler.AddCommand("resetPlayerCompIP", Commands.ResetPlayerCompIP, autoComplete:false);
-                Command.Handler.AddCommand("setIP", Commands.SetTheme, autoComplete:false);
+                Command.Handler.AddCommand("setIP", Commands.SetIP, autoComplete:false);
+                Command.Handler.AddCommand("showFlags", Commands.ShowFlags, autoComplete: false);
+                Command.Handler.AddCommand("addFlag", Commands.AddFlag, autoComplete: false);
+                Command.Handler.AddCommand("removeFlag", Commands.RemoveFlag, autoComplete: false);
+                Command.Handler.AddCommand("authenticateToIRC", Commands.AuthenticateToIRC, autoComplete: false);
+                Command.Handler.AddCommand("addAgentToIRC", Commands.AddAgentToIRC, autoComplete: false);
+                Command.Handler.AddCommand("setCompPorts", Commands.SetCompPorts, autoComplete: false);
+                //Command.Handler.AddCommand("removePortFromComp", Commands.RemovePortFromComp, autoComplete: false);
+                Command.Handler.AddCommand("addSongChangerDaemon", Commands.AddSongChangerDaemon, autoComplete: false);
+                Command.Handler.AddCommand("addRicerConnectDaemon", Commands.AddRicerConnectDaemon, autoComplete: false);
+                Command.Handler.AddCommand("addDLCCreditsDaemon", Commands.AddDLCCreditsDaemon, autoComplete: false);
+                Command.Handler.AddCommand("addIRCDaemon", Commands.AddIRCDaemon, autoComplete: false);
+                Command.Handler.AddCommand("addISPDaemon", Commands.AddISPDaemon, autoComplete: false);
+                Command.Handler.AddCommand("quit", Commands.Quit, autoComplete: false);
+                Command.Handler.AddCommand("deleteLogs", Commands.DeleteLogs, autoComplete: false);
+                Command.Handler.AddCommand("forkbombProof", Commands.ForkbombProof, autoComplete: false);
             }
 
         }

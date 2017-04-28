@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using XNA = Microsoft.Xna.Framework;
 
-namespace OpenAllPortsMod
+namespace DebugMod
 {
     static class Commands
     {
@@ -66,7 +66,61 @@ namespace OpenAllPortsMod
             }
             return false;
         }
-
+        public static bool CloseAllPorts(Hacknet.OS os, List<string> args)
+        {
+            string ip = os.thisComputer.ip;
+            Computer computer = os.connectedComp;
+            Console.WriteLine(computer.ports);
+            if (computer.ports.Contains(22))
+            {
+                computer.closePort(22, ip);
+            }
+            if (computer.ports.Contains(21))
+            {
+                computer.closePort(21, ip);
+            }
+            if (computer.ports.Contains(25))
+            {
+                computer.closePort(25, ip);
+            }
+            if (computer.ports.Contains(80))
+            {
+                computer.closePort(80, ip);
+            }
+            if (computer.ports.Contains(1433))
+            {
+                computer.closePort(1433, ip);
+            }
+            if (computer.ports.Contains(3724))
+            {
+                computer.closePort(3724, ip);
+            }
+            if (computer.ports.Contains(104))
+            {
+                computer.closePort(104, ip);
+            }
+            if (computer.ports.Contains(3659))
+            {
+                computer.closePort(3659, ip);
+            }
+            if (computer.ports.Contains(192))
+            {
+                computer.closePort(192, ip);
+            }
+            if (computer.ports.Contains(6881))
+            {
+                computer.closePort(6881, ip);
+            }
+            if (computer.ports.Contains(443))
+            {
+                computer.closePort(443, ip);
+            }
+            if (computer.ports.Contains(9418))
+            {
+                computer.closePort(9418, ip);
+            }
+            return false;
+        }
         public static bool BypassProxy(Hacknet.OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
@@ -152,22 +206,7 @@ namespace OpenAllPortsMod
         {
             string computer = args[1];
             string author = args[2];
-            string messageInput1 = args[3];
-            string messageInput2 = args[4];
-            string messageInput3 = args[5];
-            string messageInput4 = args[6];
-            string messageInput5 = args[7];
-            string messageInput6 = args[8];
-            string messageInput7 = args[9];
-            string messageInput8 = args[10];
-            string messageInput9 = args[11];
-            string messageInput10 = args[12];
-            string messageInput11 = args[13];
-            string messageInput12 = args[14];
-            string messageInput13 = args[15];
-            string messageInput14 = args[16];
-            string message = messageInput1 + messageInput2 + messageInput3 + messageInput4 + messageInput5 + messageInput6 + messageInput7 + messageInput8 + messageInput9 + messageInput10 + messageInput11 + messageInput12 + messageInput13 + messageInput14;
-
+            string message = args[3];
             if (args.Count < 3)
             {
                 os.write("Usage: addIRCMessage (ComputerID) (Author) (Message)");
@@ -180,12 +219,12 @@ namespace OpenAllPortsMod
         }
         public static bool StrikerAttack(Hacknet.OS os, List<string> args)
         {
-            HackerScriptExecuter.runScript("DLC/ActionScripts/Hackers/SystemHack.txt", os, (string)null);
+            HackerScriptExecuter.runScript("DLC/ActionScripts/Hackers/SystemHack.txt", (object)os, (string)null, (string)null);
             return false;
         }
         public static bool ThemeAttack(Hacknet.OS os, List<string> args)
         {
-            HackerScriptExecuter.runScript("HackerScripts/ThemeHack.txt", os, (string)null);
+            HackerScriptExecuter.runScript("HackerScripts/ThemeHack.txt", (object)os, (string)null, (string)null);
             return false;
         }
         public static bool CallThePoliceSoTheyCanTraceYou(Hacknet.OS os, List<string> args)
@@ -335,13 +374,19 @@ namespace OpenAllPortsMod
             List<int> FolderPath = new List<int>();
             FolderPath.Add(5);
             Folder folder = computer.files.root.searchForFolder("Whitelist");
+           
             folder.files.Remove(folder.files[0]);
             return false;
         }
         public static bool ChangeMusic(Hacknet.OS os, List<string> args)
         {
-            string song = args[1];
-            MusicManager.playSongImmediatley("Content\\" + song);
+            string SongInput = args[1];
+            string Song = args[1].Replace("/", "\\");
+            if (Song == SongInput)
+            {
+                Song = args[1].Replace("\\", "\\");
+            }
+            MusicManager.playSongImmediatley(Song);
             return false;
         }
         public static bool CrashComputer(Hacknet.OS os, List<string> args)
@@ -396,66 +441,129 @@ namespace OpenAllPortsMod
             computer.addNewUser(os.thisComputer.ip, Username, Password, Type);
             return false;
         }
-        public static bool OpenPort(Hacknet.OS os, List<string> args)
+        /*public static bool OpenPort(Hacknet.OS os, List<string> args)
         {
             int port = Convert.ToInt32(args[1]);
-            Computer computer = os.thisComputer;
-            computer.openPort(port, os.thisComputer.ip);
-            return false;
-        }
-        public static bool CloseAllPorts(Hacknet.OS os, List<string> args)
-        {
             string ip = os.thisComputer.ip;
             Computer computer = os.connectedComp;
             Console.WriteLine(computer.ports);
-            if (computer.ports.Contains(22))
+            if (port == 22)
+            {
+                computer.openPort(22, ip);
+            }
+            else if (port == 21)
+            {
+                computer.openPort(21, ip);
+            }
+            else if (port == 25)
+            {
+                computer.openPort(25, ip);
+            }
+            else if (port == 80)
+            {
+                computer.openPort(80, ip);
+            }
+            else if (port == 1433)
+            {
+                computer.openPort(1433, ip);
+            }
+            else if (port == 3724)
+            {
+                computer.openPort(3724, ip);
+            }
+            else if (port == 104)
+            {
+                computer.openPort(104, ip);
+            }
+            else if (port == 3659)
+            {
+                computer.openPort(3659, ip);
+            }
+            else if (port == 192)
+            {
+                computer.openPort(192, ip);
+            }
+            else if (port == 6881)
+            {
+                computer.openPort(6881, ip);
+            }
+            else if (port == 443)
+            {
+                computer.openPort(443, ip);
+            }
+            else if (port == 9418)
+            {
+                computer.openPort(9418, ip);
+            }
+            return false;
+        }
+        public static bool ClosePort(Hacknet.OS os, List<string> args)
+        {
+            int port = Convert.ToInt32(args[1]);
+            string ip = os.thisComputer.ip;
+            Computer computer = os.connectedComp;
+            Console.WriteLine(computer.ports);
+            if (port == 22)
             {
                 computer.closePort(22, ip);
             }
-            if (computer.ports.Contains(21))
+            else if (port == 21)
             {
                 computer.closePort(21, ip);
             }
-            if (computer.ports.Contains(25))
+            else if (port == 25)
             {
                 computer.closePort(25, ip);
             }
-            if (computer.ports.Contains(80))
+            else if (port == 80)
             {
                 computer.closePort(80, ip);
             }
-            if (computer.ports.Contains(1433))
+            else if (port == 1433)
             {
                 computer.closePort(1433, ip);
             }
-            if (computer.ports.Contains(3724))
+            else if (port == 3724)
             {
                 computer.closePort(3724, ip);
             }
-            if (computer.ports.Contains(104))
+            else if (port == 104)
             {
                 computer.closePort(104, ip);
             }
-            if (computer.ports.Contains(3659))
+            else if (port == 3659)
             {
                 computer.closePort(3659, ip);
             }
-            if (computer.ports.Contains(192))
+            else if (port == 192)
             {
                 computer.closePort(192, ip);
             }
-            if (computer.ports.Contains(6881))
+            else if (port == 6881)
             {
                 computer.closePort(6881, ip);
             }
-            if (computer.ports.Contains(443))
+            else if (port == 443)
             {
                 computer.closePort(443, ip);
             }
-            if (computer.ports.Contains(9418))
+            else if (port == 9418)
             {
                 computer.closePort(9418, ip);
             }
+            return false;
+        } */
+        public static bool OpenPort(Hacknet.OS os, List<string> args)
+        {
+            Computer computer = os.connectedComp;
+            if (args.Count < 1)
+            {
+                os.write("Usage: openPort (PortToopen)");
+                return false;
+            }
+            int port = Convert.ToInt32(args[1]);
+            string ip = os.thisComputer.ip;
+            computer.openPort(port, ip);
             return false;
         }
         public static bool ClosePort(Hacknet.OS os, List<string> args)
@@ -463,10 +571,12 @@ namespace OpenAllPortsMod
             Computer computer = os.connectedComp;
             if (args.Count < 1)
             {
-                os.write("Usage: closePort (PortToClose)");
+                os.write("Usage: closePort (PortToClose)\n");
                 return false;
             }
             int port = Convert.ToInt32(args[1]);
+            string ip = os.thisComputer.ip;
+            computer.closePort(port, ip);
             return false;
         }
         public static bool RemoveProxy(Hacknet.OS os, List<string> args)
@@ -874,6 +984,86 @@ namespace OpenAllPortsMod
             IRC.AddAgent(args[2], args[3], colour);
             return false;
         }
-        
+        public static bool SetCompPorts(Hacknet.OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            ComputerLoader.loadPortsIntoComputer(args[2], computer);
+            return false;
+        }
+        /*public static bool RemovePortFromComp(Hacknet.OS os, List<string> args) Not used, probably should be removed
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.ports.Remove(Convert.ToInt32(args[2]));
+            return false;
+        }
+        public static bool AddCustomPortToComp(Hacknet.OS os, List<string> args) Untested, test and release when pathfinder 3.0 comes out
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Pathfinder.Port.PortType port = new Pathfinder.Port.PortType(args[2], Convert.ToUInt32(args[3]));
+            port.AssignTo(computer, false);
+            Pathfinder.Port.Handler.AddPort(port.PortId, port);
+            return false;
+        }
+        public static bool RemoveCustomPortFromComp(Hacknet.OS os, List<string> args) IDK how to do this.......
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Pathfinder.Computer.Extensions.GetModdedPortList(computer);
+            return false;
+        } */
+        public static bool AddSongChangerDaemon(Hacknet.OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            SongChangerDaemon daemon = new SongChangerDaemon(computer, os);
+            computer.daemons.Add(daemon);
+            return false;
+        }
+        public static bool AddRicerConnectDaemon(Hacknet.OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            CustomConnectDisplayDaemon daemon = new CustomConnectDisplayDaemon(computer, os);
+            computer.daemons.Add(daemon);
+            return false;
+        }
+        public static bool AddDLCCreditsDaemon(Hacknet.OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            DLCCreditsDaemon daemon = new DLCCreditsDaemon(computer, os);
+            computer.daemons.Add(daemon);
+            return false;
+        }
+        public static bool AddIRCDaemon(Hacknet.OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            IRCDaemon daemon = new IRCDaemon(computer, os, args[2]);
+            computer.daemons.Add(daemon);
+            return false;
+        }
+        public static bool AddISPDaemon(Hacknet.OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            ISPDaemon daemon = new ISPDaemon(computer, os);
+            computer.daemons.Add(daemon);
+            return false;
+        }
+        public static bool Quit(Hacknet.OS os, List<string> args)
+        {
+            Game1.getSingleton().Exit();
+            return false;
+        }
+        public static bool DeleteLogs(Hacknet.OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Console.WriteLine("Computer object obtained");
+            Folder folder = computer.files.root.searchForFolder("log");
+            Console.WriteLine("Folder object obtained");
+            folder.files.Clear();
+            Console.WriteLine("Deleted all logs");
+            return false;
+        }
+        public static bool ForkbombProof(Hacknet.OS os, List<string> args)
+        {
+            os.totalRam = 1000000000;
+            return false;
+        }
     }
 }
