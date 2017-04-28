@@ -1053,11 +1053,11 @@ namespace DebugMod
         public static bool DeleteLogs(Hacknet.OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
-            Console.WriteLine("Computer object obtained");
+            //Console.WriteLine("Computer object obtained");
             Folder folder = computer.files.root.searchForFolder("log");
-            Console.WriteLine("Folder object obtained");
+            //Console.WriteLine("Folder object obtained");
             folder.files.Clear();
-            Console.WriteLine("Deleted all logs");
+            //Console.WriteLine("Deleted all logs");
             return false;
         }
         public static bool ForkbombProof(Hacknet.OS os, List<string> args)

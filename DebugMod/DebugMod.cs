@@ -76,32 +76,33 @@ namespace DebugMod
                 Command.Handler.AddCommand("nodeRestore", Commands.NodeRestore, autoComplete:false); // Unknown
                 Command.Handler.AddCommand("addWhiteCircle", Commands.AddRestoreCircle, autoComplete:false); // Works
                 Command.Handler.AddCommand("whitelistBypass", Commands.WhitelistBypass, autoComplete:false); // Works
-                Command.Handler.AddCommand("setTheme", Commands.SetTheme, autoComplete:false); 
-                Command.Handler.AddCommand("setCustomTheme", Commands.SetCustomTheme, autoComplete:false);
-                Command.Handler.AddCommand("linkComputer", Commands.LinkComputer, autoComplete:false);
-                Command.Handler.AddCommand("unlinkComputer", Commands.UnlinkComputer, autoComplete:false);
-                Command.Handler.AddCommand("loseAllNodes", Commands.LoseAllNodes, autoComplete:false);
-                Command.Handler.AddCommand("loseNode", Commands.LoseNode, autoComplete:false);
-                Command.Handler.AddCommand("revealNode", Commands.RevealNode, autoComplete:false);
-                Command.Handler.AddCommand("removeComputer", Commands.RemoveComputer, autoComplete:false);
-                Command.Handler.AddCommand("resetIP", Commands.ResetIP, autoComplete:false);
-                Command.Handler.AddCommand("resetPlayerCompIP", Commands.ResetPlayerCompIP, autoComplete:false);
-                Command.Handler.AddCommand("setIP", Commands.SetIP, autoComplete:false);
-                Command.Handler.AddCommand("showFlags", Commands.ShowFlags, autoComplete: false);
-                Command.Handler.AddCommand("addFlag", Commands.AddFlag, autoComplete: false);
-                Command.Handler.AddCommand("removeFlag", Commands.RemoveFlag, autoComplete: false);
-                Command.Handler.AddCommand("authenticateToIRC", Commands.AuthenticateToIRC, autoComplete: false);
-                Command.Handler.AddCommand("addAgentToIRC", Commands.AddAgentToIRC, autoComplete: false);
-                Command.Handler.AddCommand("setCompPorts", Commands.SetCompPorts, autoComplete: false);
-                //Command.Handler.AddCommand("removePortFromComp", Commands.RemovePortFromComp, autoComplete: false);
-                Command.Handler.AddCommand("addSongChangerDaemon", Commands.AddSongChangerDaemon, autoComplete: false);
-                Command.Handler.AddCommand("addRicerConnectDaemon", Commands.AddRicerConnectDaemon, autoComplete: false);
-                Command.Handler.AddCommand("addDLCCreditsDaemon", Commands.AddDLCCreditsDaemon, autoComplete: false);
-                Command.Handler.AddCommand("addIRCDaemon", Commands.AddIRCDaemon, autoComplete: false);
-                Command.Handler.AddCommand("addISPDaemon", Commands.AddISPDaemon, autoComplete: false);
-                Command.Handler.AddCommand("quit", Commands.Quit, autoComplete: false);
-                Command.Handler.AddCommand("deleteLogs", Commands.DeleteLogs, autoComplete: false);
-                Command.Handler.AddCommand("forkbombProof", Commands.ForkbombProof, autoComplete: false);
+                Command.Handler.AddCommand("setTheme", Commands.SetTheme, autoComplete:false);  // Works
+                Command.Handler.AddCommand("setCustomTheme", Commands.SetCustomTheme, autoComplete:false); // Works
+                Command.Handler.AddCommand("linkComputer", Commands.LinkComputer, autoComplete:false); // Works
+                Command.Handler.AddCommand("unlinkComputer", Commands.UnlinkComputer, autoComplete:false); // Works
+                Command.Handler.AddCommand("loseAllNodes", Commands.LoseAllNodes, autoComplete:false); // Works
+                Command.Handler.AddCommand("loseNode", Commands.LoseNode, autoComplete:false); // Works
+                Command.Handler.AddCommand("revealNode", Commands.RevealNode, autoComplete:false); // Works
+                Command.Handler.AddCommand("removeComputer", Commands.RemoveComputer, autoComplete:false); // Works
+                Command.Handler.AddCommand("resetIP", Commands.ResetIP, autoComplete:false); // Works
+                Command.Handler.AddCommand("resetPlayerCompIP", Commands.ResetPlayerCompIP, autoComplete:false); // Works
+                Command.Handler.AddCommand("setIP", Commands.SetIP, autoComplete:false); // Works
+
+                Command.Handler.AddCommand("showFlags", Commands.ShowFlags, autoComplete: false); // Works
+                Command.Handler.AddCommand("addFlag", Commands.AddFlag, autoComplete: false); // Works
+                Command.Handler.AddCommand("removeFlag", Commands.RemoveFlag, autoComplete: false); // Works
+                Command.Handler.AddCommand("authenticateToIRC", Commands.AuthenticateToIRC, autoComplete: false); // Works
+                Command.Handler.AddCommand("addAgentToIRC", Commands.AddAgentToIRC, autoComplete: false); // Works
+                Command.Handler.AddCommand("setCompPorts", Commands.SetCompPorts, autoComplete: false); // Works
+                //Command.Handler.AddCommand("removePortFromComp", Commands.RemovePortFromComp, autoComplete: false); Replaced with setCompPorts
+                Command.Handler.AddCommand("addSongChangerDaemon", Commands.AddSongChangerDaemon, autoComplete: false); // Works
+                Command.Handler.AddCommand("addRicerConnectDaemon", Commands.AddRicerConnectDaemon, autoComplete: false); // Works
+                Command.Handler.AddCommand("addDLCCreditsDaemon", Commands.AddDLCCreditsDaemon, autoComplete: false); // Works
+                //Command.Handler.AddCommand("addIRCDaemon", Commands.AddIRCDaemon, autoComplete: false);
+                Command.Handler.AddCommand("addISPDaemon", Commands.AddISPDaemon, autoComplete: false); // Works
+                Command.Handler.AddCommand("quit", Commands.Quit, autoComplete: false); // Works
+                Command.Handler.AddCommand("deleteLogs", Commands.DeleteLogs, autoComplete: false); // Works
+                Command.Handler.AddCommand("forkbombProof", Commands.ForkbombProof, autoComplete: false); // Works
             }
 
         }

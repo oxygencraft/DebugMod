@@ -18,7 +18,33 @@ Use this at your own risk, this may corrupt saves.
 
 # Beta Commands:
 
+showFlags - Shows all the flags for save
 
+addFlag - Adds a flag to the save: Usage: addFlag (FlagToAdd)
+
+removeFlag - Removes a flag from the save: Usage: removeFlag (FlagToRemove)
+
+authenticateToIRC - Shows IRC Authentication screen when you connect to IRC
+
+addAgentToIRC - Adds an agent to IRC: Usage: addAgentToIRC (NameORIDORIP) (AgentName) (AgentPassword) (AgentColourRed) (AgentColourBlue) (AgentColourGreen)
+
+setCompPorts - Sets the ports of the computer to what you input: Usage: setCompPorts (NameORIDORIP) (Port eg. 21,25,22,80 (This will remove all ports then add 21,25,22,80))
+
+addSongChangerDaemon - Adds the song changer like the credits server had: Usage: addSongChanger (NameORIDORIP)
+
+addRicerConnectDaemon - Adds the connect screen like ricer had: Usage: addRicerConnect (NameORIDORIP)
+
+addDLCCreditsDaemon - Adds the dlc credits screen like Kaguya_Projects had: Usage: addDLCCredits (NameORIDIORIP)
+
+addIRCDaemon - A bit buggy currently, this one will come in the stable release of 2.0
+
+addISPDaemon - Adds the ISP Management like ISP Management Server had: Usage: addISPDaemon (NameORIPORID)
+
+quit - Exits the game
+
+deleteLogs - Auto deletes logs from the computer in argument 1: Usage: deleteLogs (NameORIPORID)
+
+forkbombProof - Makes you forkbomb proof by setting your ram 1 above the forkbomb (1000000000) ram target
 
 # New Commands:
 
