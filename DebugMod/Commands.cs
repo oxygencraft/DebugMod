@@ -11,7 +11,7 @@ namespace DebugMod
     static class Commands
     {
 
-        public static bool OpenAllPorts(Hacknet.OS os, List<string> args)
+        public static bool OpenAllPorts(OS os, List<string> args)
         {
             string ip = os.thisComputer.ip;
             Computer computer = os.connectedComp;
@@ -66,7 +66,7 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool CloseAllPorts(Hacknet.OS os, List<string> args)
+        public static bool CloseAllPorts(OS os, List<string> args)
         {
             string ip = os.thisComputer.ip;
             Computer computer = os.connectedComp;
@@ -121,49 +121,49 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool BypassProxy(Hacknet.OS os, List<string> args)
+        public static bool BypassProxy(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             computer.proxyActive = false;
             return false;
         }
 
-        public static bool SolveFirewall(Hacknet.OS os, List<string> args)
+        public static bool SolveFirewall(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             computer.firewall.solved = true;
             return false;
         }
 
-        public static bool GetAdmin(Hacknet.OS os, List<string> args)
+        public static bool GetAdmin(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             computer.adminIP = os.thisComputer.ip;
             return false;
         }
 
-        public static bool DeathSeq(Hacknet.OS os, List<string> args)
+        public static bool DeathSeq(OS os, List<string> args)
         {
             os.TraceDangerSequence.BeginTraceDangerSequence();
             return false;
         }
-        public static bool CancelDeathSeq(Hacknet.OS os, List<string> args)
+        public static bool CancelDeathSeq(OS os, List<string> args)
         {
             os.TraceDangerSequence.CancelTraceDangerSequence();
             return false;
         }
 
-        public static bool SetHomeNodeServer(Hacknet.OS os, List<string> args)
+        public static bool SetHomeNodeServer(OS os, List<string> args)
         {
             os.homeNodeID = os.connectedComp.idName;
             return false;
         }
-        public static bool SetHomeAssetServer(Hacknet.OS os, List<string> args)
+        public static bool SetHomeAssetServer(OS os, List<string> args)
         {
             os.homeAssetServerID = os.connectedComp.idName;
             return false;
         }
-        public static bool Debug(Hacknet.OS os, List<string> args)
+        public static bool Debug(OS os, List<string> args)
         {
             int num = PortExploits.services.Count;
             for (int index = 0; index<PortExploits.services.Count && index<num; ++index)
@@ -188,13 +188,13 @@ namespace DebugMod
             os.thisComputer.files.root.folders[2].files.Add(new FileEntry(PortExploits.DangerousPacemakerFirmware, "KBT_TestFirmware.dll"));
             return false;
         }
-        public static bool LoseAdmin(Hacknet.OS os, List<string> args)
+        public static bool LoseAdmin(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             computer.adminIP = os.connectedComp.ip;
             return false;
         }
-        public static bool RevealAll(Hacknet.OS os, List<string> args)
+        public static bool RevealAll(OS os, List<string> args)
         {
             for (int index = 0; index < os.netMap.nodes.Count; ++index)
                 os.netMap.visibleNodes.Add(index);
@@ -202,7 +202,7 @@ namespace DebugMod
 
             return false;
         }
-        public static bool AddIRCMessage(Hacknet.OS os, List<string> args)
+        public static bool AddIRCMessage(OS os, List<string> args)
         {
             string computer = args[1];
             string author = args[2];
@@ -217,27 +217,27 @@ namespace DebugMod
             IRC.IRCSystem.AddLog(author, message, null);
             return false;
         }
-        public static bool StrikerAttack(Hacknet.OS os, List<string> args)
+        public static bool StrikerAttack(OS os, List<string> args)
         {
             HackerScriptExecuter.runScript("DLC/ActionScripts/Hackers/SystemHack.txt", (object)os, (string)null, (string)null);
             return false;
         }
-        public static bool ThemeAttack(Hacknet.OS os, List<string> args)
+        public static bool ThemeAttack(OS os, List<string> args)
         {
             HackerScriptExecuter.runScript("HackerScripts/ThemeHack.txt", (object)os, (string)null, (string)null);
             return false;
         }
-        public static bool CallThePoliceSoTheyCanTraceYou(Hacknet.OS os, List<string> args)
+        public static bool CallThePoliceSoTheyCanTraceYou(OS os, List<string> args)
         {
             os.traceTracker.start(100f);
             return false;
         }
-        public static bool ReportYourselfToFBI(Hacknet.OS os, List<string> args)
+        public static bool ReportYourselfToFBI(OS os, List<string> args)
         {
             os.traceTracker.start(20f);
             return false;
         }
-        public static bool TraceYourselfIn(Hacknet.OS os, List<string> args)
+        public static bool TraceYourselfIn(OS os, List<string> args)
         {
             string TraceTimeInput = args[1];
             float TraceTime;
@@ -254,57 +254,57 @@ namespace DebugMod
             os.traceTracker.start(TraceTime);
             return false;
         }
-        public static bool WarningFlash(Hacknet.OS os, List<string> args)
+        public static bool WarningFlash(OS os, List<string> args)
         {
             os.warningFlash();
             return false;
         }
-        public static bool StopTrace(Hacknet.OS os, List<string> args)
+        public static bool StopTrace(OS os, List<string> args)
         {
             os.traceTracker.stop();
             return false;
         }
-        public static bool HideDisplay(Hacknet.OS os, List<string> args)
+        public static bool HideDisplay(OS os, List<string> args)
         {
             os.display.visible = false;
             return false;
         }
-        public static bool HideNetMap(Hacknet.OS os, List<string> args)
+        public static bool HideNetMap(OS os, List<string> args)
         {
             os.netMap.visible = false;
             return false;
         }
-        public static bool HideTerminal(Hacknet.OS os, List<string> args)
+        public static bool HideTerminal(OS os, List<string> args)
         {
             os.terminal.visible = false;
             return false;
         }
-        public static bool HideRAM(Hacknet.OS os, List<string> args)
+        public static bool HideRAM(OS os, List<string> args)
         {
             os.ram.visible = false;
             return false;
         }
-        public static bool ShowDisplay(Hacknet.OS os, List<string> args)
+        public static bool ShowDisplay(OS os, List<string> args)
         {
             os.display.visible = true;
             return false;
         }
-        public static bool ShowNetMap(Hacknet.OS os, List<string> args)
+        public static bool ShowNetMap(OS os, List<string> args)
         {
             os.netMap.visible = true;
             return false;
         }
-        public static bool ShowTerminal(Hacknet.OS os, List<string> args)
+        public static bool ShowTerminal(OS os, List<string> args)
         {
             os.terminal.visible = true;
             return false;
         }
-        public static bool ShowRAM(Hacknet.OS os, List<string> args)
+        public static bool ShowRAM(OS os, List<string> args)
         {
             os.ram.visible = true;
             return false;
         }
-        public static bool GetUniversalAdmin(Hacknet.OS os, List<string> args)
+        public static bool GetUniversalAdmin(OS os, List<string> args)
         {
             List<Computer> computerList = os.netMap.nodes;
             string str = os.thisComputer.ip;
@@ -314,14 +314,14 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool HackComputer(Hacknet.OS os, List<string> args)
+        public static bool HackComputer(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             int RAMAvailable = os.ramAvaliable;
             
             return false;
         }
-        public static bool ChangeUserDetails(Hacknet.OS os, List<string> args)
+        public static bool ChangeUserDetails(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             string oldUser = args[1];
@@ -341,7 +341,7 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool GenerateExampleAcadmicRecord(Hacknet.OS os, List<string> args)
+        public static bool GenerateExampleAcadmicRecord(OS os, List<string> args)
         {
             Computer computer = os.thisComputer;
             Folder folder = os.thisComputer.files.root.searchForFolder("home");
@@ -349,7 +349,7 @@ namespace DebugMod
             folder.files.Add(new FileEntry(File, "FULL NAME HERE"));
             return false;
         }
-        public static bool GenerateExampleMedicalRecord(Hacknet.OS os, List<string> args)
+        public static bool GenerateExampleMedicalRecord(OS os, List<string> args)
         {
             Computer computer = os.thisComputer;
             Folder folder = os.thisComputer.files.root.searchForFolder("home");
@@ -357,7 +357,7 @@ namespace DebugMod
             folder.files.Add(new FileEntry(File, "LASTNAMEHERE FIRSTNAMEHERE"));
             return false;
         }
-        public static bool ExecuteHack(Hacknet.OS os, List<string> args)
+        public static bool ExecuteHack(OS os, List<string> args)
         {
             string HackerScript = args[1];
             if (args.Count < 0)
@@ -368,7 +368,7 @@ namespace DebugMod
             HackerScriptExecuter.runScript("HackerScripts/" + HackerScript, (string)null);
             return false;
         }
-        public static bool DeleteWhitelistDLL(Hacknet.OS os, List<string> args)
+        public static bool DeleteWhitelistDLL(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             List<int> FolderPath = new List<int>();
@@ -378,7 +378,7 @@ namespace DebugMod
             folder.files.Remove(folder.files[0]);
             return false;
         }
-        public static bool ChangeMusic(Hacknet.OS os, List<string> args)
+        public static bool ChangeMusic(OS os, List<string> args)
         {
             string SongInput = args[1];
             string Song = args[1].Replace("/", "\\");
@@ -389,13 +389,13 @@ namespace DebugMod
             MusicManager.playSongImmediatley(Song);
             return false;
         }
-        public static bool CrashComputer(Hacknet.OS os, List<string> args)
+        public static bool CrashComputer(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             computer.crash(os.thisComputer.ip);
             return false;
         }
-        public static bool AddProxy(Hacknet.OS os, List<string> args)
+        public static bool AddProxy(OS os, List<string> args)
         {
             string ProxyTimeInput = args[1];
             float ProxyTime;
@@ -409,7 +409,7 @@ namespace DebugMod
             computer.addProxy(ProxyTime);
             return false;
         }
-        public static bool AddFirewall(Hacknet.OS os, List<string> args)
+        public static bool AddFirewall(OS os, List<string> args)
         {
             string Solution = args[1];
             string LevelInput = args[2];
@@ -418,15 +418,23 @@ namespace DebugMod
             float AdditionalTime;
             float.TryParse(AdditionalTimeInput, out AdditionalTime);
             Computer computer = os.connectedComp;
-            if (args.Count < 2)
+            if (args.Count == 1 && args[1] != null)
             {
-                os.write("Usage: addFirewall (Solution) (Level) [AdditionalTime]");
-                return false;
+                computer.addFirewall(Level);
+            } else if (args.Count == 2 && args[1] != null && args[2] != null)
+            {
+                computer.addFirewall(Level, Solution);
+            } else if (args.Count == 3 && args[1] != null && args[2] != null && args[3] != null)
+            {
+                computer.addFirewall(Level, Solution, AdditionalTime);
             }
-            computer.addFirewall(Level, Solution, AdditionalTime);
+            else
+            {
+                os.write("Usage: addFirewall (Level) [Solution] [AdditionalTime]");
+            }
             return false;
         }
-        public static bool AddUser(Hacknet.OS os, List<string> args)
+        public static bool AddUser(OS os, List<string> args)
         {
             string Username = args[1];
             string Password = args[2];
@@ -441,7 +449,7 @@ namespace DebugMod
             computer.addNewUser(os.thisComputer.ip, Username, Password, Type);
             return false;
         }
-        /*public static bool OpenPort(Hacknet.OS os, List<string> args)
+        /*public static bool OpenPort(OS os, List<string> args)
         {
             int port = Convert.ToInt32(args[1]);
             string ip = os.thisComputer.ip;
@@ -497,7 +505,7 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool ClosePort(Hacknet.OS os, List<string> args)
+        public static bool ClosePort(OS os, List<string> args)
         {
             int port = Convert.ToInt32(args[1]);
             string ip = os.thisComputer.ip;
@@ -553,7 +561,7 @@ namespace DebugMod
             }
             return false;
         } */
-        public static bool OpenPort(Hacknet.OS os, List<string> args)
+        public static bool OpenPort(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             if (args.Count < 1)
@@ -566,7 +574,7 @@ namespace DebugMod
             computer.openPort(port, ip);
             return false;
         }
-        public static bool ClosePort(Hacknet.OS os, List<string> args)
+        public static bool ClosePort(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             if (args.Count < 1)
@@ -579,19 +587,19 @@ namespace DebugMod
             computer.closePort(port, ip);
             return false;
         }
-        public static bool RemoveProxy(Hacknet.OS os, List<string> args)
+        public static bool RemoveProxy(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             computer.hasProxy = false;
             return false;
         }
-        /*public static bool RemoveFirewall(Hacknet.OS os, List<string> args)
+        /*public static bool RemoveFirewall(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
             computer.
             return false;
         } */
-        public static bool AddComputer(Hacknet.OS os, List<string> args)
+        public static bool AddComputer(OS os, List<string> args)
         {
             if (args.Count < 5)
             {
@@ -618,7 +626,7 @@ namespace DebugMod
             os.netMap.nodes.Add(computer); // If you are adding a new computer, you must add the object to nodes list
             return false;
         }
-        public static bool DefineComputer(Hacknet.OS os, List<string> args)
+        public static bool DefineComputer(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             string Action = args[2];
@@ -636,18 +644,18 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool PlaySFX(Hacknet.OS os, List<string> args)
+        public static bool PlaySFX(OS os, List<string> args)
         {
             SoundEffect sound = os.content.Load<SoundEffect>(args[1]);
             sound.Play();
             return false;
         }
-        public static bool GetMoreRAM(Hacknet.OS os, List<string> args)
+        public static bool GetMoreRAM(OS os, List<string> args)
         {
             os.totalRam = 2048;
             return false;
         }
-        public static bool SetFaction(Hacknet.OS os, List<string> args)
+        public static bool SetFaction(OS os, List<string> args)
         {
             string factionInput = args[1];
             if (factionInput == "entropy")
@@ -668,12 +676,12 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool TracedBehind250Proxies(Hacknet.OS os, List<string> args)
+        public static bool TracedBehind250Proxies(OS os, List<string> args)
         {
             os.traceTracker.start(500f);
             return false;
         }
-        public static bool OxygencraftStorageFaciltyCache(Hacknet.OS os, List<string> args) // Don't tell anyone about this command, keep it a secret
+        public static bool OxygencraftStorageFaciltyCache(OS os, List<string> args) // Don't tell anyone about this command, keep it a secret
         {
             Computer computer = new Computer("oxygencraft Storage Facility", "4825.18.385.2956", os.netMap.getRandomPosition(), 2000, 2, os);
             computer.idName = "oxyStorageCache";
@@ -742,28 +750,28 @@ namespace DebugMod
             os.netMap.nodes.Add(computer);
             return false;
         }
-        public static bool DisableEmailIcon(Hacknet.OS os, List<string> args)
+        public static bool DisableEmailIcon(OS os, List<string> args)
         {
             os.DisableEmailIcon = true;
             return false;
         }
-        public static bool EnableEmailIcon(Hacknet.OS os, List<string> args)
+        public static bool EnableEmailIcon(OS os, List<string> args)
         {
             os.DisableEmailIcon = false;
             return false;
         }
-        public static bool NodeRestore(Hacknet.OS os, List<string> args)
+        public static bool NodeRestore(OS os, List<string> args)
         {
             DLC1SessionUpgrader.ReDsicoverAllVisibleNodesInOSCache(os);
             return false;
         }
-        public static bool AddRestoreCircle(Hacknet.OS os, List<string> args)
+        public static bool AddRestoreCircle(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             SFX.addCircle(computer.getScreenSpacePosition(), Utils.AddativeWhite * 0.4f, 70f);
             return false;
         }
-        public static bool WhitelistBypass(Hacknet.OS os, List<string> args)
+        public static bool WhitelistBypass(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             Folder folder = computer.files.root.searchForFolder("Whitelist");
@@ -772,7 +780,7 @@ namespace DebugMod
             os.execute("connect " + computer.ip);
             return false;
         }
-        public static bool SetTheme(Hacknet.OS os, List<string> args)
+        public static bool SetTheme(OS os, List<string> args)
         {
             OSTheme Theme;
             string ThemeInput = args[1];
@@ -829,7 +837,7 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool SetCustomTheme(Hacknet.OS os, List<string> args)
+        public static bool SetCustomTheme(OS os, List<string> args)
         {
             ThemeManager.switchTheme(os, args[1]);
             return false;
@@ -849,14 +857,14 @@ namespace DebugMod
             computer.links.Add(os.netMap.nodes.IndexOf(computer2));
             return false;
         }
-        public static bool UnlinkComputer(Hacknet.OS os, List<string> args)
+        public static bool UnlinkComputer(OS os, List<string> args)
         {
             Computer computer1 = Programs.getComputer(os, args[1]);
             Computer computer2 = Programs.getComputer(os, args[2]);
             computer1.links.Remove(os.netMap.nodes.IndexOf(computer2));
             return false;
         }
-        public static bool LoseAllNodes(Hacknet.OS os, List<string> args)
+        public static bool LoseAllNodes(OS os, List<string> args)
         {
             for (int index = 1; index < os.netMap.nodes.Count; ++index)
             {
@@ -875,7 +883,7 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool LoseNode(Hacknet.OS os, List<string> args)
+        public static bool LoseNode(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             int CompToRemove = os.netMap.nodes.IndexOf(computer);
@@ -892,14 +900,14 @@ namespace DebugMod
             os.netMap.visibleNodes.Remove(CompToRemove);
             return false;
         }
-        public static bool RevealNode(Hacknet.OS os, List<string> args)
+        public static bool RevealNode(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             int CompToReveal = os.netMap.nodes.IndexOf(computer);
             os.netMap.visibleNodes.Add(CompToReveal);
             return false;
         }
-        public static bool RemoveComputer(Hacknet.OS os, List<string> args)
+        public static bool RemoveComputer(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             int CompToRemove = os.netMap.nodes.IndexOf(computer);
@@ -917,44 +925,44 @@ namespace DebugMod
             os.netMap.nodes.Remove(computer);
             return false;
         }
-        public static bool ResetIP(Hacknet.OS os, List<string> args)
+        public static bool ResetIP(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             computer.ip = NetworkMap.generateRandomIP();
             return false;
         }
-        public static bool ResetPlayerCompIP(Hacknet.OS os, List<string> args)
+        public static bool ResetPlayerCompIP(OS os, List<string> args)
         {
             os.thisComputerIPReset();
             return false;
         }
-        public static bool SetIP(Hacknet.OS os, List<string> args)
+        public static bool SetIP(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             computer.ip = args[2];
             return false;
         }
-        public static bool ShowFlags(Hacknet.OS os, List<string> args)
+        public static bool ShowFlags(OS os, List<string> args)
         {
             os.write(os.Flags.GetSaveString());
             return false;
         }
-        public static bool AddFlag(Hacknet.OS os, List<string> args)
+        public static bool AddFlag(OS os, List<string> args)
         {
             os.Flags.AddFlag(args[1]);
             return false;
         }
-        public static bool RemoveFlag(Hacknet.OS os, List<string> args)
+        public static bool RemoveFlag(OS os, List<string> args)
         {
             os.Flags.RemoveFlag(args[1]);
             return false;
         }
-        public static bool AuthenticateToIRC(Hacknet.OS os, List<string> args)
+        public static bool AuthenticateToIRC(OS os, List<string> args)
         {
             os.Flags.RemoveFlag("DLC_Player_IRC_Authenticated");
             return false;
         }
-        public static bool AddAgentToIRC(Hacknet.OS os, List<string> args)
+        public static bool AddAgentToIRC(OS os, List<string> args)
         {
             Computer computerobject = Programs.getComputer(os, args[1]);
             if (args.Count < 6)
@@ -984,19 +992,19 @@ namespace DebugMod
             IRC.AddAgent(args[2], args[3], colour);
             return false;
         }
-        public static bool SetCompPorts(Hacknet.OS os, List<string> args)
+        public static bool SetCompPorts(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             ComputerLoader.loadPortsIntoComputer(args[2], computer);
             return false;
         }
-        /*public static bool RemovePortFromComp(Hacknet.OS os, List<string> args) Not used, probably should be removed
+        /*public static bool RemovePortFromComp(OS os, List<string> args) Not used, probably should be removed
         {
             Computer computer = Programs.getComputer(os, args[1]);
             computer.ports.Remove(Convert.ToInt32(args[2]));
             return false;
         }
-        public static bool AddCustomPortToComp(Hacknet.OS os, List<string> args) Untested, test and release when pathfinder 3.0 comes out
+        public static bool AddCustomPortToComp(OS os, List<string> args) Untested, test and release when pathfinder 3.0 comes out
         {
             Computer computer = Programs.getComputer(os, args[1]);
             Pathfinder.Port.PortType port = new Pathfinder.Port.PortType(args[2], Convert.ToUInt32(args[3]));
@@ -1004,53 +1012,53 @@ namespace DebugMod
             Pathfinder.Port.Handler.AddPort(port.PortId, port);
             return false;
         }
-        public static bool RemoveCustomPortFromComp(Hacknet.OS os, List<string> args) IDK how to do this.......
+        public static bool RemoveCustomPortFromComp(OS os, List<string> args) IDK how to do this.......
         {
             Computer computer = Programs.getComputer(os, args[1]);
             Pathfinder.Computer.Extensions.GetModdedPortList(computer);
             return false;
         } */
-        public static bool AddSongChangerDaemon(Hacknet.OS os, List<string> args)
+        public static bool AddSongChangerDaemon(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             SongChangerDaemon daemon = new SongChangerDaemon(computer, os);
             computer.daemons.Add(daemon);
             return false;
         }
-        public static bool AddRicerConnectDaemon(Hacknet.OS os, List<string> args)
+        public static bool AddRicerConnectDaemon(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             CustomConnectDisplayDaemon daemon = new CustomConnectDisplayDaemon(computer, os);
             computer.daemons.Add(daemon);
             return false;
         }
-        public static bool AddDLCCreditsDaemon(Hacknet.OS os, List<string> args)
+        public static bool AddDLCCreditsDaemon(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             DLCCreditsDaemon daemon = new DLCCreditsDaemon(computer, os);
             computer.daemons.Add(daemon);
             return false;
         }
-        public static bool AddIRCDaemon(Hacknet.OS os, List<string> args)
+        public static bool AddIRCDaemon(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             IRCDaemon daemon = new IRCDaemon(computer, os, args[2]);
             computer.daemons.Add(daemon);
             return false;
         }
-        public static bool AddISPDaemon(Hacknet.OS os, List<string> args)
+        public static bool AddISPDaemon(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             ISPDaemon daemon = new ISPDaemon(computer, os);
             computer.daemons.Add(daemon);
             return false;
         }
-        public static bool Quit(Hacknet.OS os, List<string> args)
+        public static bool Quit(OS os, List<string> args)
         {
             Game1.getSingleton().Exit();
             return false;
         }
-        public static bool DeleteLogs(Hacknet.OS os, List<string> args)
+        public static bool DeleteLogs(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
             //Console.WriteLine("Computer object obtained");
@@ -1060,7 +1068,7 @@ namespace DebugMod
             //Console.WriteLine("Deleted all logs");
             return false;
         }
-        public static bool ForkbombProof(Hacknet.OS os, List<string> args)
+        public static bool ForkbombProof(OS os, List<string> args)
         {
             os.totalRam = 1000000000;
             return false;
