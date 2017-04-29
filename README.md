@@ -9,7 +9,7 @@ Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 # How to report issues:
 
 1. Search before opening, someone else may of opened it.
-2. Make sure that your game files aren't broken before
+2. Make sure that your game files aren't broken before reporting the issue.
 3. Tell me how to replicate the bug.
 
 # Warning:
@@ -98,9 +98,9 @@ revealAll - Reveals all computers in game save
 
 addIRCMessage - Adds IRC Message to server: Usage: addIRCMessage (ComputerID) (Author) (Message)
 
-strikerAttack - Starts Striker hack
+strikerAttack - Starts Striker hack (May be bugged for some users)
 
-themeAttack - Starts Naix hack
+themeAttack - Starts Naix hack (May be bugged for some users)
 
 callThePoliceSoTheyCanTraceYou - 100 sec trace
 
