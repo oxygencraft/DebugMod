@@ -14,7 +14,7 @@ Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 
 # Empty exception and event listener call failed:
 
-There is not much I can do about it, it's a pathfinder bug nt calling the command method.
+There is not much I can do about it, it's a pathfinder bug not calling the command method.
 
 # Warning:
 
