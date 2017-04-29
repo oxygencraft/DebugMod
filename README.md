@@ -12,6 +12,10 @@ Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 2. Make sure that your game files aren't broken before reporting the issue.
 3. Tell me how to replicate the bug.
 
+# Empty exception and event listener call failed:
+
+There is not much I can do about it, it's a pathfinder bug nt calling the command method.
+
 # Warning:
 
 Use this at your own risk, this may corrupt saves.
