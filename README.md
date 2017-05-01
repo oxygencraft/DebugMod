@@ -14,13 +14,13 @@ Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 
 # Empty exception and event listener call failed:
 
-There is not much I can do about it, it's a pathfinder bug not calling the command method.
+There isn't much I can do about it, it's a pathfinder bug not calling the command method.
 
 # Warning:
 
 Use this at your own risk, this may corrupt saves.
 
-# Beta Commands:
+# Beta Commands (Download the beta build from releases):
 
 showFlags - Shows all the flags for save
 
