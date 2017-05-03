@@ -28,24 +28,11 @@ namespace DebugMod
         public void LoadContent()
         {
             bool DebugEnabled = true;
-            bool SettingsChanger = true;
             Command.Handler.AddCommand("openAllPorts", Commands.OpenAllPorts, autoComplete:true); // Works
             Command.Handler.AddCommand("bypassProxy", Commands.BypassProxy, autoComplete:true); // Works
             Command.Handler.AddCommand("solveFirewall", Commands.SolveFirewall, autoComplete:true); // Works
             Command.Handler.AddCommand("getAdmin", Commands.GetAdmin, autoComplete:true); // Works
             Command.Handler.AddCommand("loseAdmin", Commands.LoseAdmin, autoComplete:true); // Works
-            if (SettingsChanger)
-            {
-                Settings.AllowExtensionPublish = true;
-                Settings.debugDrawEnabled = true;
-                //Settings.DrawHexBackground = true;
-                Settings.isSpecialTestBuild = true;
-                Settings.isServerMode = true;
-                Settings.testingMenuItemsEnabled = true;
-                Settings.slowOSStartup = false;
-                Settings.HasLabyrinthsDemoStartMainMenuButton = true;
-                Settings.FastBootText = true;
-            }
             if (DebugEnabled)
             {
                 Command.Handler.AddCommand("startDeathSeq", Commands.DeathSeq, autoComplete:false); // Works
