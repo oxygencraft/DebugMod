@@ -1175,6 +1175,16 @@ namespace DebugMod
             os.write("IP: " + computer.ip);
             return false;
         }
-        
+        public static bool SummonDebugModDaemonComp(OS os, List<string> args)
+        {
+            Computer computer = new Computer("DebugMod Comp", NetworkMap.generateRandomIP(), os.netMap.getRandomPosition(), 50000, 2, os);
+            computer.idName = "debugMod";
+            os.netMap.nodes.Add(computer);
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            Daemon daemon = Pathfinder.Daemon.Instance.CreateInstance("DebugModDaemon", computer, dict);
+            //computer.daemons.Add(daemon);
+            os.execute("connect " + computer.ip);
+            return false;
+        }
     }
 }
