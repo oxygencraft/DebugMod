@@ -1,5 +1,6 @@
 ﻿using System;
 using Command = Pathfinder.Command;
+using Hacknet;
 
 namespace DebugMod
 {
@@ -11,7 +12,13 @@ namespace DebugMod
             return "Debug Mod";
         }
 
-        public string Identifier => GetIdentifier();
+        public string Identifier
+        {
+            get
+            {
+                return GetIdentifier();
+            }
+        }
 
         public void Load()
         {
@@ -21,18 +28,31 @@ namespace DebugMod
         public void LoadContent()
         {
             bool DebugEnabled = true;
+            bool SettingsChanger = true;
             Command.Handler.AddCommand("openAllPorts", Commands.OpenAllPorts, autoComplete:true); // Works
             Command.Handler.AddCommand("bypassProxy", Commands.BypassProxy, autoComplete:true); // Works
             Command.Handler.AddCommand("solveFirewall", Commands.SolveFirewall, autoComplete:true); // Works
             Command.Handler.AddCommand("getAdmin", Commands.GetAdmin, autoComplete:true); // Works
             Command.Handler.AddCommand("loseAdmin", Commands.LoseAdmin, autoComplete:true); // Works
+            if (SettingsChanger)
+            {
+                Settings.AllowExtensionPublish = true;
+                Settings.debugDrawEnabled = true;
+                //Settings.DrawHexBackground = true;
+                Settings.isSpecialTestBuild = true;
+                Settings.isServerMode = true;
+                Settings.testingMenuItemsEnabled = true;
+                Settings.slowOSStartup = false;
+                Settings.HasLabyrinthsDemoStartMainMenuButton = true;
+                Settings.FastBootText = true;
+            }
             if (DebugEnabled)
             {
                 Command.Handler.AddCommand("startDeathSeq", Commands.DeathSeq, autoComplete:false); // Works
                 Command.Handler.AddCommand("cancelDeathSeq", Commands.CancelDeathSeq, autoComplete:false); // Works
                 Command.Handler.AddCommand("setHomeNodeServer", Commands.SetHomeNodeServer, autoComplete:false); // Works
                 Command.Handler.AddCommand("setHomeAssetServer", Commands.SetHomeAssetServer, autoComplete:false); // Works
-                Command.Handler.AddCommand("debug", Commands.Debug, autoComplete:false); // Works
+                Command.Handler.AddCommand("debug", Commands.Debug, autoComplete:false); // Works   
                 Command.Handler.AddCommand("revealAll", Commands.RevealAll, autoComplete:false); // Works
                 Command.Handler.AddCommand("addIRCMessage", Commands.AddIRCMessage, autoComplete:false); // Works
                 Command.Handler.AddCommand("strikerAttack", Commands.StrikerAttack, autoComplete:false); // Works
@@ -87,7 +107,6 @@ namespace DebugMod
                 Command.Handler.AddCommand("resetIP", Commands.ResetIP, autoComplete:false); // Works
                 Command.Handler.AddCommand("resetPlayerCompIP", Commands.ResetPlayerCompIP, autoComplete:false); // Works
                 Command.Handler.AddCommand("setIP", Commands.SetIP, autoComplete:false); // Works
-
                 Command.Handler.AddCommand("showFlags", Commands.ShowFlags, autoComplete: false); // Works
                 Command.Handler.AddCommand("addFlag", Commands.AddFlag, autoComplete: false); // Works
                 Command.Handler.AddCommand("removeFlag", Commands.RemoveFlag, autoComplete: false); // Works
@@ -103,6 +122,18 @@ namespace DebugMod
                 Command.Handler.AddCommand("quit", Commands.Quit, autoComplete: false); // Works
                 Command.Handler.AddCommand("deleteLogs", Commands.DeleteLogs, autoComplete: false); // Works
                 Command.Handler.AddCommand("forkbombProof", Commands.ForkbombProof, autoComplete: false); // Works
+
+                Command.Handler.AddCommand("changeCompIcon", Commands.ChangeCompIcon, autoComplete: false);
+                Command.Handler.AddCommand("removeSongChangerDaemon", Commands.RemoveSongChangerDaemon, autoComplete: false);
+                Command.Handler.AddCommand("removeRicerConnectDaemon", Commands.RemoveRicerConnectDaemon, autoComplete: false);
+                Command.Handler.AddCommand("removeDLCCreditsDaemon", Commands.RemoveDLCCreditsDaemon, autoComplete: false);
+                //Command.Handler.AddCommand("removeIRCDaemon", Commands.RemoveIRCDaemon, autoComplete: false);
+                Command.Handler.AddCommand("removeISPDaemon", Commands.RemoveISPDaemon, autoComplete: false);
+                Command.Handler.AddCommand("forkbombVirus", Commands.ForkbombVirus, autoComplete: false);
+                Command.Handler.AddCommand("installInviolabilty", Commands.InstallInviolabilty, autoComplete: false);
+                Command.Handler.AddCommand("removeAllDaemons", Commands.RemoveAllDaemons, autoComplete: false);
+                Pathfinder.Daemon.IInterface daemon = new DebugDaemon();
+                Pathfinder.Daemon.Handler.AddDaemon("DebugModDaemon", daemon);
             }
 
         }

@@ -219,13 +219,33 @@ namespace DebugMod
         }
         public static bool StrikerAttack(OS os, List<string> args)
         {
-            HackerScriptExecuter.runScript("DLC/ActionScripts/Hackers/SystemHack.txt", (object)os, (string)null, (string)null);
-            return false;
+            try
+            {
+                Console.WriteLine("Build is being used");
+                HackerScriptExecuter.runScript("DLC/ActionScripts/Hackers/SystemHack.txt", (object)os, (string)null);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Catch is working");
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
         public static bool ThemeAttack(OS os, List<string> args)
         {
-            HackerScriptExecuter.runScript("HackerScripts/ThemeHack.txt", (object)os, (string)null, (string)null);
-            return false;
+            try
+            {
+                Console.WriteLine("Build is being used");
+                HackerScriptExecuter.runScript("HackerScripts/ThemeHack.txt", (object)os, (string)null);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Catch is working");
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
         public static bool CallThePoliceSoTheyCanTraceYou(OS os, List<string> args)
         {
@@ -374,8 +394,14 @@ namespace DebugMod
             List<int> FolderPath = new List<int>();
             FolderPath.Add(5);
             Folder folder = computer.files.root.searchForFolder("Whitelist");
-           
-            folder.files.Remove(folder.files[0]);
+            for (int index = 0; index < folder.files.Count; ++index)
+            {
+                if (folder.files[index].name.Equals("authenticator.dll"))
+                {
+                    folder.files.Remove(folder.files[index]);
+                    os.execute("connect " + computer.ip);
+                }
+            }
             return false;
         }
         public static bool ChangeMusic(OS os, List<string> args)
@@ -593,12 +619,12 @@ namespace DebugMod
             computer.hasProxy = false;
             return false;
         }
-        /*public static bool RemoveFirewall(OS os, List<string> args)
+        public static bool RemoveFirewall(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
-            computer.
+            computer.firewall = null;
             return false;
-        } */
+        }
         public static bool AddComputer(OS os, List<string> args)
         {
             if (args.Count < 5)
@@ -705,7 +731,7 @@ namespace DebugMod
             {
                 if (computer.users[index].name.ToLower().Equals("admin")) {
                     UserDetail user = computer.users[index];
-                    if (os.username == "oxygencraft")
+                    if (os.username == "oxygencraft" || os.username == "oxygencraft2" || os.username == "oxygencraft3" || os.username == "oxygencraft4")
                     {
                         user.known = true;
                     }
@@ -775,9 +801,15 @@ namespace DebugMod
         {
             Computer computer = Programs.getComputer(os, args[1]);
             Folder folder = computer.files.root.searchForFolder("Whitelist");
-            folder.files.Remove(folder.files[1]);
-            folder.files.Add(new FileEntry(os.thisComputer.ip, "list.txt"));
-            os.execute("connect " + computer.ip);
+            for (int index = 0; index < folder.files.Count; ++index)
+            {
+                if (folder.files[index].name.Equals("list.txt") || folder.files[index].name.Equals("source.txt"))
+                {
+                    folder.files.Remove(folder.files[index]);
+                    folder.files.Add(new FileEntry(os.thisComputer.ip, "list.txt"));
+                    os.execute("connect " + computer.ip);
+                }
+            }
             return false;
         }
         public static bool SetTheme(OS os, List<string> args)
@@ -1073,5 +1105,76 @@ namespace DebugMod
             os.totalRam = 1000000000;
             return false;
         }
+        public static bool ChangeCompIcon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.icon = args[2];
+            return false;
+        }
+        public static bool RemoveSongChangerDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof (SongChangerDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool RemoveRicerConnectDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof(CustomConnectDisplayDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool RemoveDLCCreditsDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof(DLCCreditsDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool RemoveIRCDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof(IRCDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool RemoveISPDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof(ISPDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool ForkbombVirus(OS os, List<string> args) // Bugged
+        {
+            for (int index = 1; index < os.netMap.nodes.Count; ++index)
+                os.netMap.nodes[index].crash(os.thisComputer.ip);
+
+
+
+            return false;
+        }
+        public static bool InstallInviolabilty(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.portsNeededForCrack = 9999999;
+            return false;
+        }
+        public static bool RemoveAllDaemons(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.daemons.Clear();
+            return false;
+        }
+        public static bool ShowIPNamesAndID(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            os.write("ID: " + computer.idName);
+            os.write("Name: " + computer.name);
+            os.write("IP: " + computer.ip);
+            return false;
+        }
+        
     }
 }
