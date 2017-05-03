@@ -219,33 +219,13 @@ namespace DebugMod
         }
         public static bool StrikerAttack(OS os, List<string> args)
         {
-            try
-            {
-                Console.WriteLine("Build is being used");
-                HackerScriptExecuter.runScript("DLC/ActionScripts/Hackers/SystemHack.txt", (object)os, (string)null);
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Catch is working");
-                Console.WriteLine(ex.Message);
-                return false;
-            }
+            HackerScriptExecuter.runScript("DLC/ActionScripts/Hackers/SystemHack.txt", (object)os, (string)null);
+            return false;
         }
         public static bool ThemeAttack(OS os, List<string> args)
         {
-            try
-            {
-                Console.WriteLine("Build is being used");
-                HackerScriptExecuter.runScript("HackerScripts/ThemeHack.txt", (object)os, (string)null);
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Catch is working");
-                Console.WriteLine(ex.Message);
-                return false;
-            }
+            HackerScriptExecuter.runScript("HackerScripts/ThemeHack.txt", (object)os, (string)null);
+            return false;
         }
         public static bool CallThePoliceSoTheyCanTraceYou(OS os, List<string> args)
         {

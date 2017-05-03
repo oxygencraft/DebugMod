@@ -132,9 +132,10 @@ namespace DebugMod
                 Command.Handler.AddCommand("forkbombVirus", Commands.ForkbombVirus, autoComplete: false);
                 Command.Handler.AddCommand("installInviolabilty", Commands.InstallInviolabilty, autoComplete: false);
                 Command.Handler.AddCommand("removeAllDaemons", Commands.RemoveAllDaemons, autoComplete: false);
-                Command.Handler.AddCommand("summonDebugModDaemonComp", Commands.SummonDebugModDaemonComp, autoComplete: false);
-                Pathfinder.Daemon.IInterface daemon = new DebugDaemon();
-                Pathfinder.Daemon.Handler.AddDaemon("DebugModDaemon", daemon);
+                Command.Handler.AddCommand("")
+                //Command.Handler.AddCommand("summonDebugModDaemonComp", Commands.SummonDebugModDaemonComp, autoComplete: false);
+                //Pathfinder.Daemon.IInterface daemon = new DebugDaemon();
+                //Pathfinder.Daemon.Handler.AddDaemon("DebugModDaemon", daemon);
             }
 
         }
