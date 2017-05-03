@@ -1186,5 +1186,54 @@ namespace DebugMod
             os.execute("connect " + computer.ip);
             return false;
         }
+        public static bool ChangeAdmin(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            if (args[2] == "basic")
+            {
+                computer.admin = new BasicAdministrator();
+            } else if (args[2] == "fastbasic")
+            {
+                computer.admin = new FastBasicAdministrator();
+            } else if (args[2] == "fastprogress")
+            {
+                computer.admin = new FastProgressOnlyAdministrator();
+            } else if (args[2] == "alwaysactive")
+            {
+                computer.admin = new AlwaysActiveAdmin();
+            } else if (args[2] == "none")
+            {
+                computer.admin = null;
+            }
+            else
+            {
+                os.write("Usage: changeAdmin (IDORIPORName) (Admin)");
+                os.write("Valid options: basic,fastbasic,fastprogress,alwaysactive,none");
+            }
+            return false;
+        }
+        public static bool ViewAdmin(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            if (computer.admin == new BasicAdministrator())
+            {
+                os.write("Basic Admin");
+            } else if (computer.admin == new FastBasicAdministrator())
+            {
+                os.write("Fast Basic Admin");
+            } else if (computer.admin == new FastProgressOnlyAdministrator())
+            {
+                os.write("Fast Progress Admin");
+            } else if (computer.admin == new AlwaysActiveAdmin())
+            {
+                os.write("Always Active Admin");
+            }
+            else
+            {
+                os.write("You may of entered the computer incorrectly or there is no admin for the computer");
+                os.write("Usage: viewAdmin (IPORIDORName)");
+            }
+            return false;
+        }
     }
 }
