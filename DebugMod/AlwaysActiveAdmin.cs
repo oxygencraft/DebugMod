@@ -50,6 +50,7 @@ namespace DebugMod
                 time = 10;
             }
             os.delayer.Post(ActionDelayer.Wait(time), action);
+            os.timerExpired();
         }
     }
 }
