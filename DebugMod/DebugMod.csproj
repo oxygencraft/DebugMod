@@ -50,7 +50,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlwaysActiveAdmin.cs" />
     <Compile Include="Commands.cs" />
+    <Compile Include="DebugApp.cs" />
+    <Compile Include="DebugDaemon.cs" />
     <Compile Include="DebugMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

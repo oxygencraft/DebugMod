@@ -219,12 +219,12 @@ namespace DebugMod
         }
         public static bool StrikerAttack(OS os, List<string> args)
         {
-            HackerScriptExecuter.runScript("DLC/ActionScripts/Hackers/SystemHack.txt", (object)os, (string)null, (string)null);
+            HackerScriptExecuter.runScript("DLC/ActionScripts/Hackers/SystemHack.txt", (object)os, (string)null);
             return false;
         }
         public static bool ThemeAttack(OS os, List<string> args)
         {
-            HackerScriptExecuter.runScript("HackerScripts/ThemeHack.txt", (object)os, (string)null, (string)null);
+            HackerScriptExecuter.runScript("HackerScripts/ThemeHack.txt", (object)os, (string)null);
             return false;
         }
         public static bool CallThePoliceSoTheyCanTraceYou(OS os, List<string> args)
@@ -374,8 +374,14 @@ namespace DebugMod
             List<int> FolderPath = new List<int>();
             FolderPath.Add(5);
             Folder folder = computer.files.root.searchForFolder("Whitelist");
-           
-            folder.files.Remove(folder.files[0]);
+            for (int index = 0; index < folder.files.Count; ++index)
+            {
+                if (folder.files[index].name.Equals("authenticator.dll"))
+                {
+                    folder.files.Remove(folder.files[index]);
+                    os.execute("connect " + computer.ip);
+                }
+            }
             return false;
         }
         public static bool ChangeMusic(OS os, List<string> args)
@@ -593,12 +599,12 @@ namespace DebugMod
             computer.hasProxy = false;
             return false;
         }
-        /*public static bool RemoveFirewall(OS os, List<string> args)
+        public static bool RemoveFirewall(OS os, List<string> args)
         {
             Computer computer = os.connectedComp;
-            computer.
+            computer.firewall = null;
             return false;
-        } */
+        }
         public static bool AddComputer(OS os, List<string> args)
         {
             if (args.Count < 5)
@@ -705,7 +711,7 @@ namespace DebugMod
             {
                 if (computer.users[index].name.ToLower().Equals("admin")) {
                     UserDetail user = computer.users[index];
-                    if (os.username == "oxygencraft")
+                    if (os.username == "oxygencraft" || os.username == "oxygencraft2" || os.username == "oxygencraft3" || os.username == "oxygencraft4")
                     {
                         user.known = true;
                     }
@@ -775,9 +781,15 @@ namespace DebugMod
         {
             Computer computer = Programs.getComputer(os, args[1]);
             Folder folder = computer.files.root.searchForFolder("Whitelist");
-            folder.files.Remove(folder.files[1]);
-            folder.files.Add(new FileEntry(os.thisComputer.ip, "list.txt"));
-            os.execute("connect " + computer.ip);
+            for (int index = 0; index < folder.files.Count; ++index)
+            {
+                if (folder.files[index].name.Equals("list.txt") || folder.files[index].name.Equals("source.txt"))
+                {
+                    folder.files.Remove(folder.files[index]);
+                    folder.files.Add(new FileEntry(os.thisComputer.ip, "list.txt"));
+                    os.execute("connect " + computer.ip);
+                }
+            }
             return false;
         }
         public static bool SetTheme(OS os, List<string> args)
@@ -1071,6 +1083,136 @@ namespace DebugMod
         public static bool ForkbombProof(OS os, List<string> args)
         {
             os.totalRam = 1000000000;
+            return false;
+        }
+        public static bool ChangeCompIcon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.icon = args[2];
+            return false;
+        }
+        public static bool RemoveSongChangerDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof (SongChangerDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool RemoveRicerConnectDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof(CustomConnectDisplayDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool RemoveDLCCreditsDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof(DLCCreditsDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool RemoveIRCDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof(IRCDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool RemoveISPDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            Daemon daemon = computer.getDaemon(typeof(ISPDaemon));
+            computer.daemons.Remove(daemon);
+            return false;
+        }
+        public static bool ForkbombVirus(OS os, List<string> args) // Bugged
+        {
+            for (int index = 1; index < os.netMap.nodes.Count; ++index)
+                os.netMap.nodes[index].crash(os.thisComputer.ip);
+
+
+
+            return false;
+        }
+        public static bool InstallInviolabilty(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.portsNeededForCrack = 9999999;
+            return false;
+        }
+        public static bool RemoveAllDaemons(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            computer.daemons.Clear();
+            return false;
+        }
+        public static bool ShowIPNamesAndID(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            os.write("ID: " + computer.idName);
+            os.write("Name: " + computer.name);
+            os.write("IP: " + computer.ip);
+            return false;
+        }
+        public static bool SummonDebugModDaemonComp(OS os, List<string> args)
+        {
+            Computer computer = new Computer("DebugMod Comp", NetworkMap.generateRandomIP(), os.netMap.getRandomPosition(), 50000, 2, os);
+            computer.idName = "debugMod";
+            os.netMap.nodes.Add(computer);
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            Daemon daemon = Pathfinder.Daemon.Instance.CreateInstance("DebugModDaemon", computer, dict);
+            //computer.daemons.Add(daemon);
+            os.execute("connect " + computer.ip);
+            return false;
+        }
+        public static bool ChangeAdmin(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            if (args[2] == "basic")
+            {
+                computer.admin = new BasicAdministrator();
+            } else if (args[2] == "fastbasic")
+            {
+                computer.admin = new FastBasicAdministrator();
+            } else if (args[2] == "fastprogress")
+            {
+                computer.admin = new FastProgressOnlyAdministrator();
+            } else if (args[2] == "alwaysactive")
+            {
+                computer.admin = new AlwaysActiveAdmin();
+            } else if (args[2] == "none")
+            {
+                computer.admin = null;
+            }
+            else
+            {
+                os.write("Usage: changeAdmin (IDORIPORName) (Admin)");
+                os.write("Valid options: basic,fastbasic,fastprogress,alwaysactive,none");
+            }
+            return false;
+        }
+        public static bool ViewAdmin(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            if (computer.admin == new BasicAdministrator())
+            {
+                os.write("Basic Admin");
+            } else if (computer.admin == new FastBasicAdministrator())
+            {
+                os.write("Fast Basic Admin");
+            } else if (computer.admin == new FastProgressOnlyAdministrator())
+            {
+                os.write("Fast Progress Admin");
+            } else if (computer.admin == new AlwaysActiveAdmin())
+            {
+                os.write("Always Active Admin");
+            }
+            else
+            {
+                os.write("You may of entered the computer incorrectly or there is no admin for the computer");
+                os.write("Usage: viewAdmin (IPORIDORName)");
+            }
             return false;
         }
     }
