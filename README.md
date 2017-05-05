@@ -168,7 +168,7 @@ closePort - Closes port on the computer you are connected to: Usage: closePort (
 
 removeProxy - Removes proxy from the computer you are connected to
 
-playSFX - Plays a sound effect, root directory is Content: Usage: playSFX (PathToSoundEffect eg. SFX/EmailSound.xnb)
+playSFX - Plays a sound effect, root directory is Content: Usage: playSFX (PathToSoundEffect eg. SFX/EmailSound)
 
 deleteWhitelistDLL - Deletes authenticator.dll from a whitelist server or whitelist protected server: Usage: DeleteWhitelistDLL (IPOrIDOrName)
 
