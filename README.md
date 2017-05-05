@@ -50,6 +50,14 @@ deleteLogs - Auto deletes logs from the computer in argument 1: Usage: deleteLog
 
 forkbombProof - Makes you forkbomb proof by setting your ram 1 above the forkbomb (1000000000) ram target
 
+showIPNamesAndID - Shows the IP, Name and the ID of argument 1: Usage: showIPNamesAndID (IPORIDORName)
+
+changeAdmin - Changes the admin of the computer in argument 1: Usage: changeAdmin (IPORIDORName) (Admin)
+
+Valid Options: basic,fastbasic,fastprogress,alwaysactive,none
+
+viewAdmin - Outputs to the console of the admin of argument 1: Usage: viewAdmin (IPORIDORName)
+
 # New Commands:
 
 setTheme - Sets the theme to argument one: Usage: setTheme [THEME]
