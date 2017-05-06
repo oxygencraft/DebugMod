@@ -28,12 +28,12 @@ namespace DebugMod
         public void LoadContent()
         {
             bool DebugEnabled = true;
-            bool SettingsChanger = true;
             Command.Handler.AddCommand("openAllPorts", Commands.OpenAllPorts, autoComplete:true); // Works
             Command.Handler.AddCommand("bypassProxy", Commands.BypassProxy, autoComplete:true); // Works
             Command.Handler.AddCommand("solveFirewall", Commands.SolveFirewall, autoComplete:true); // Works
             Command.Handler.AddCommand("getAdmin", Commands.GetAdmin, autoComplete:true); // Works
             Command.Handler.AddCommand("loseAdmin", Commands.LoseAdmin, autoComplete:true); // Works
+            bool SettingsChanger = true;
             if (SettingsChanger)
             {
                 Settings.AllowExtensionPublish = true;
@@ -46,6 +46,7 @@ namespace DebugMod
                 Settings.HasLabyrinthsDemoStartMainMenuButton = true;
                 Settings.FastBootText = true;
             }
+
             if (DebugEnabled)
             {
                 Command.Handler.AddCommand("startDeathSeq", Commands.DeathSeq, autoComplete:false); // Works
@@ -135,6 +136,7 @@ namespace DebugMod
                 Command.Handler.AddCommand("showIPNamesAndID", Commands.ShowIPNamesAndID, autoComplete: false);
                 Command.Handler.AddCommand("changeAdmin", Commands.ChangeAdmin, autoComplete: false);
                 Command.Handler.AddCommand("viewAdmin", Commands.ViewAdmin, autoComplete: false);
+                Command.Handler.AddCommand("exportGraphic", Commands.ExportGraphic, autoComplete: false);
                 //Command.Handler.AddCommand("summonDebugModDaemonComp", Commands.SummonDebugModDaemonComp, autoComplete: false);
                 //Pathfinder.Daemon.IInterface daemon = new DebugDaemon();
                 //Pathfinder.Daemon.Handler.AddDaemon("DebugModDaemon", daemon);
