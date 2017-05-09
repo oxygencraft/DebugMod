@@ -10,10 +10,15 @@ using Hacknet.Gui;
 
 namespace DebugMod
 {
-    class DebugDaemon : IInterface
+    class DebugDaemon : Daemon, IInterface
     {
         public string InitialServiceName => "DebugMod";
         private DebugModState State;
+
+        public DebugDaemon(Computer computer, OS opSystem, string serviceName = "DebugMod") : base(computer, serviceName, opSystem)
+        {
+
+        }
 
         public void Draw(Instance instance, Rectangle bounds, SpriteBatch sb) // Draws stuff on the screen, will need
         {

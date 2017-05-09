@@ -136,7 +136,16 @@ namespace DebugMod
                 Command.Handler.AddCommand("showIPNamesAndID", Commands.ShowIPNamesAndID, autoComplete: false);
                 Command.Handler.AddCommand("changeAdmin", Commands.ChangeAdmin, autoComplete: false);
                 Command.Handler.AddCommand("viewAdmin", Commands.ViewAdmin, autoComplete: false);
-                Command.Handler.AddCommand("exportGraphic", Commands.ExportGraphic, autoComplete: false);
+                Command.Handler.AddCommand("tellPeopleYouAreGonnaHackThemOnline", Commands.TellPeopleYouAreGonnaHackThemOnline, autoComplete: false);
+                Command.Handler.AddCommand("myFatherIsCCC", Commands.MyFatherIsCCC, autoComplete: false);
+                Command.Handler.AddCommand("cantTouchThis", Commands.CantTouchThis, autoComplete: false);
+                Command.Handler.AddCommand("replayPlaneMission", Commands.ReplayPlaneMission, autoComplete: false);
+                Command.Handler.AddCommand("replayPlaneMissionSecondary", Commands.ReplayPlaneMissionSecondary, autoComplete: false);
+                Command.Handler.AddCommand("viewFaction", Commands.ViewFaction, autoComplete: false);
+                Command.Handler.AddCommand("viewPlayerVal", Commands.ViewPlayerVal, autoComplete: false);
+                Command.Handler.AddCommand("kaguyaTrialEffect", Commands.KaguyaTrialEffect, autoComplete: false);
+                Command.Handler.AddCommand("kaguyaTrialEffect2", Commands.KaguyaTrialEffect2, autoComplete: false);
+                Command.Handler.AddCommand("kaguyaTrialEffect3", Commands.KaguyaTrialEffect3, autoComplete: false);
                 //Command.Handler.AddCommand("summonDebugModDaemonComp", Commands.SummonDebugModDaemonComp, autoComplete: false);
                 //Pathfinder.Daemon.IInterface daemon = new DebugDaemon();
                 //Pathfinder.Daemon.Handler.AddDaemon("DebugModDaemon", daemon);
