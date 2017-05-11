@@ -258,7 +258,9 @@ namespace DebugMod
         }
         public static bool WarningFlash(OS os, List<string> args)
         {
+            SoundEffect sound = os.content.Load<SoundEffect>("SFX/beep");
             os.warningFlash();
+            sound.Play();
             return false;
         }
         public static bool StopTrace(OS os, List<string> args)
@@ -311,7 +313,7 @@ namespace DebugMod
             List<Computer> computerListExtensionExtensionExtension = os.netMap.nodes;
             List<int> visbleCompsExtensionExtensionExtension = os.netMap.visibleNodes;
             string str = os.thisComputer.ip;
-            for (int index = 0; index <= computerListExtensionExtensionExtension.Count; ++index)
+            for (int index = 0; index < computerListExtensionExtensionExtension.Count; ++index)
             {
                 computerListExtensionExtensionExtension[index].adminIP = os.thisComputer.ip;
             }
