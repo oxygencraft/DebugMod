@@ -50,9 +50,11 @@ namespace DebugMod
             const string doLabel = "doLabel";
             const string doMeasuredSmallLabel = "doMeasuredSmallLabel";
             const string doMeasuredTinyLabel = "doMeasuredTinyLabel";
+            const string doSmallLabel = "doSmallLabel";
             TextItem.doLabel(new Vector2(500f, 400f), doLabel, null);
             TextItem.doMeasuredSmallLabel(new Vector2(500f, 500f), doMeasuredSmallLabel, null);
             TextItem.doMeasuredTinyLabel(new Vector2(500f, 600f), doMeasuredTinyLabel, null);
+            TextItem.doSmallLabel(new Vector2(500f, 300f), doSmallLabel, null);
             if (Button.doButton(1, 800, 100, 200, 75, "Button", null))
                 State = DebugModState.HomePage;
             Button.doButton(2, 685, 843, 25, 25, "<-", null);
@@ -64,11 +66,25 @@ namespace DebugMod
             const string title = "Debug Mod";
             const string newVersion = "New version of Debug Mod is available";
             string newVersionLine2 = "You are currently running: " + DebugMod.version + " New version: " + DebugMod.newVersion;
+            string text = @"Welcome to the Debug Mod Daemon! This mod started off from an image, you can still find it by looking
+up All ports open in Hacknet Steam Artwork. Later, I gave the mod early to someone and decided to do
+more and more. After a while, I made the mod public. Ok, enough chatter about the history about this
+mod, let's explain how to use this daemon.
+
+The buttons with -> and <- are the forwards and backwards buttons. These will cycle from page to
+page, there are five pages (unknown yet). In one of these pages, there will be a list of commands
+you can use (not all are implemented yet or some aren't possible using this daemon). When you
+select a command, you will be prompted with some info or the command will execute. If some info is
+optional, you can skip it by typing null.";
             TextItem.doLabel(new Vector2(280f, 55f), title, null);
-            TextItem.doMeasuredSmallLabel(new Vector2(500f, 55f), newVersion, themeColour);
-            TextItem.doMeasuredSmallLabel(new Vector2(500f, 70f), newVersionLine2, themeColour);
+            if (DebugMod.newVersion != DebugMod.version)
+            {
+                TextItem.doSmallLabel(new Vector2(500f, 55f), newVersion, themeColour);
+                TextItem.doSmallLabel(new Vector2(500f, 70f), newVersionLine2, themeColour);
+            }
             Button.doButton(2, 673, 843, 25, 25, "<-", null);
             Button.doButton(2, 720, 843, 25, 25, "->", null);
+            TextItem.doSmallLabel(new Vector2(300f, 120f), text, null);
         }
 
         public void InitFiles(Instance instance) // IDK what this does, maybe creates the files, in that case no

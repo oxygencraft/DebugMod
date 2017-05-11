@@ -158,10 +158,10 @@ namespace DebugMod
                 Command.Handler.ResgisterCommand("summonDebugModDaemonComp", Commands.SummonDebugModDaemonComp, autoComplete: false);
                 Pathfinder.Daemon.IInterface daemon = new DebugDaemon();
                 Pathfinder.Daemon.Handler.RegisterDaemon("DebugModDaemon", daemon);
-                if (version != newVersion)
+                /*if (version != newVersion)
                 {
                     EventManager.RegisterListener<Pathfinder.Event.OSLoadSaveFileEvent>(NewUpdateAlert);
-                }
+                }*/
             }
         }
 

@@ -1402,7 +1402,16 @@ namespace DebugMod
         }
         public static bool StopAntiTrace(OS os, List<string> args)
         {
-            os.Flags.AddFlag("Stop_Anti_Teace");
+            os.Flags.AddFlag("Stop_Anti_Trace");
+            return false;
+        }
+        public static bool RunHackerScriptFunction(OS os, List<string> args)
+        {
+            string sourceComp = args[1];
+            string targetComp = args[2];
+            string command = args[3];
+            string[] functionArgs = new string[] { sourceComp, targetComp, command };
+
             return false;
         }
     }
