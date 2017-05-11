@@ -1182,8 +1182,7 @@ namespace DebugMod
             computer.idName = "debugMod";
             os.netMap.nodes.Add(computer);
             Dictionary<string, string> dict = new Dictionary<string, string>();
-            Daemon daemon = Pathfinder.Daemon.Instance.CreateInstance("DebugModDaemon", computer, dict);
-            //computer.daemons.Add(daemon);
+            Pathfinder.Computer.Extensions.AddModdedDaemon(computer, "DebugModDaemon");
             os.execute("connect " + computer.ip);
             return false;
         }
@@ -1390,6 +1389,20 @@ namespace DebugMod
             Rectangle location = new Rectangle(os.ram.bounds.X, y, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
             DLCIntroExe exe = new DLCIntroExe(location, os, null);
             AccessBypass.CallPrivateMethod<DLCIntroExe>(exe, "CompleteMailPhaseOut");
+            return false;
+        }
+        public static bool AntiTrace(OS os, List<string> args)
+        {
+            while (!os.Flags.HasFlag("Stop_Anti_Trace"))
+            {
+                os.traceTracker.stop();
+            }
+            os.Flags.RemoveFlag("Stop_Anti_Trace");
+            return false;
+        }
+        public static bool StopAntiTrace(OS os, List<string> args)
+        {
+            os.Flags.AddFlag("Stop_Anti_Teace");
             return false;
         }
     }
