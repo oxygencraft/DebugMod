@@ -22,6 +22,8 @@ Use this at your own risk, this may corrupt saves.
 
 # Beta Commands (Download the beta build from releases):
 
+NameORIDORIP or similar means you can put the name of the computer, id of the computer or the ip of the computer
+
 showFlags - Shows all the flags for save
 
 addFlag - Adds a flag to the save: Usage: addFlag (FlagToAdd)
