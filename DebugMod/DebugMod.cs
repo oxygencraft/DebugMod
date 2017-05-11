@@ -8,7 +8,7 @@ namespace DebugMod
 {
     public class DebugMod : Pathfinder.IPathfinderMod
     {
-        public static string version = "2.0-beta3";
+        public static string version = "2.0-beta2.5
         public static string newVersion = GetVersion();
         public string GetIdentifier()
         {
@@ -37,25 +37,12 @@ namespace DebugMod
         public void LoadContent()
         {
             bool DebugEnabled = true;
+
             Command.Handler.ResgisterCommand("openAllPorts", Commands.OpenAllPorts, autoComplete:true); // Works
             Command.Handler.ResgisterCommand("bypassProxy", Commands.BypassProxy, autoComplete:true); // Works
             Command.Handler.ResgisterCommand("solveFirewall", Commands.SolveFirewall, autoComplete:true); // Works
             Command.Handler.ResgisterCommand("getAdmin", Commands.GetAdmin, autoComplete:true); // Works
             Command.Handler.ResgisterCommand("loseAdmin", Commands.LoseAdmin, autoComplete:true); // Works
-            bool SettingsChanger = true;
-            if (SettingsChanger)
-            {
-                Settings.AllowExtensionPublish = true;
-                Settings.debugDrawEnabled = true;
-                //Settings.DrawHexBackground = true;
-                Settings.isSpecialTestBuild = true;
-                Settings.isServerMode = true;
-                Settings.testingMenuItemsEnabled = true;
-                Settings.slowOSStartup = false;
-                Settings.HasLabyrinthsDemoStartMainMenuButton = true;
-                Settings.FastBootText = true;
-            }
-
             if (DebugEnabled)
             {
                 Command.Handler.ResgisterCommand("startDeathSeq", Commands.DeathSeq, autoComplete:false); // Works
