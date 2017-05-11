@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XNA = Microsoft.Xna.Framework;
+using System.Reflection;
+using Microsoft.Xna.Framework;
 
 namespace DebugMod
 {
@@ -166,8 +168,8 @@ namespace DebugMod
         public static bool Debug(OS os, List<string> args)
         {
             int num = PortExploits.services.Count;
-            for (int index = 0; index<PortExploits.services.Count && index<num; ++index)
-            os.thisComputer.files.root.folders[2].files.Add(new FileEntry(PortExploits.crackExeData[PortExploits.portNums[index]], PortExploits.cracks[PortExploits.portNums[index]]));
+            for (int index = 0; index < PortExploits.services.Count && index < num; ++index)
+                os.thisComputer.files.root.folders[2].files.Add(new FileEntry(PortExploits.crackExeData[PortExploits.portNums[index]], PortExploits.cracks[PortExploits.portNums[index]]));
             os.thisComputer.files.root.folders[2].files.Add(new FileEntry(PortExploits.crackExeData[9], PortExploits.cracks[9]));
             os.thisComputer.files.root.folders[2].files.Add(new FileEntry(PortExploits.crackExeData[10], PortExploits.cracks[10]));
             os.thisComputer.files.root.folders[2].files.Add(new FileEntry(PortExploits.crackExeData[11], PortExploits.cracks[11]));
@@ -256,7 +258,9 @@ namespace DebugMod
         }
         public static bool WarningFlash(OS os, List<string> args)
         {
+            SoundEffect sound = os.content.Load<SoundEffect>("SFX/beep");
             os.warningFlash();
+            sound.Play();
             return false;
         }
         public static bool StopTrace(OS os, List<string> args)
@@ -306,11 +310,12 @@ namespace DebugMod
         }
         public static bool GetUniversalAdmin(OS os, List<string> args)
         {
-            List<Computer> computerList = os.netMap.nodes;
+            List<Computer> computerListExtensionExtensionExtension = os.netMap.nodes;
+            List<int> visbleCompsExtensionExtensionExtension = os.netMap.visibleNodes;
             string str = os.thisComputer.ip;
-            for (int index = 0; index <= computerList.Count; ++index)
+            for (int index = 0; index < computerListExtensionExtensionExtension.Count; ++index)
             {
-                computerList[index].adminIP = os.thisComputer.ip;
+                computerListExtensionExtensionExtension[index].adminIP = os.thisComputer.ip;
             }
             return false;
         }
@@ -318,7 +323,7 @@ namespace DebugMod
         {
             Computer computer = os.connectedComp;
             int RAMAvailable = os.ramAvaliable;
-            
+
             return false;
         }
         public static bool ChangeUserDetails(OS os, List<string> args)
@@ -336,8 +341,8 @@ namespace DebugMod
             {
                 if (computer.users[index].name.ToLower().Equals(oldUser))
                     computer.users[index] = new UserDetail(newUser, newPass, (byte)0);
-                    UserDetail user = computer.users[index];
-                    user.known = true;
+                UserDetail user = computer.users[index];
+                user.known = true;
             }
             return false;
         }
@@ -427,10 +432,12 @@ namespace DebugMod
             if (args.Count == 1 && args[1] != null)
             {
                 computer.addFirewall(Level);
-            } else if (args.Count == 2 && args[1] != null && args[2] != null)
+            }
+            else if (args.Count == 2 && args[1] != null && args[2] != null)
             {
                 computer.addFirewall(Level, Solution);
-            } else if (args.Count == 3 && args[1] != null && args[2] != null && args[3] != null)
+            }
+            else if (args.Count == 3 && args[1] != null && args[2] != null && args[3] != null)
             {
                 computer.addFirewall(Level, Solution, AdditionalTime);
             }
@@ -643,7 +650,9 @@ namespace DebugMod
                 float TraceTime;
                 float.TryParse(ActionArgs, out TraceTime);
                 computer.traceTime = TraceTime;
-            } else if (Action == "isadminsuper"){
+            }
+            else if (Action == "isadminsuper")
+            {
                 bool TrueOrFalse;
                 bool.TryParse(ActionArgs, out TrueOrFalse);
                 computer.admin.IsSuper = TrueOrFalse ? true : false;
@@ -709,7 +718,8 @@ namespace DebugMod
             computer.ports.Add(9418);
             for (int index = 0; index < computer.users.Count; ++index)
             {
-                if (computer.users[index].name.ToLower().Equals("admin")) {
+                if (computer.users[index].name.ToLower().Equals("admin"))
+                {
                     UserDetail user = computer.users[index];
                     if (os.username == "oxygencraft" || os.username == "oxygencraft2" || os.username == "oxygencraft3" || os.username == "oxygencraft4")
                     {
@@ -800,50 +810,63 @@ namespace DebugMod
             {
                 Theme = OSTheme.TerminalOnlyBlack;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "Blue") {
+            }
+            else if (ThemeInput == "Blue")
+            {
                 Theme = OSTheme.HacknetBlue;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "Teal")
+            }
+            else if (ThemeInput == "Teal")
             {
                 Theme = OSTheme.HacknetTeal;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "Yellow")
+            }
+            else if (ThemeInput == "Yellow")
             {
                 Theme = OSTheme.HacknetYellow;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "Green")
+            }
+            else if (ThemeInput == "Green")
             {
                 Theme = OSTheme.HackerGreen;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "White")
+            }
+            else if (ThemeInput == "White")
             {
                 Theme = OSTheme.HacknetWhite;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "Purple")
+            }
+            else if (ThemeInput == "Purple")
             {
                 Theme = OSTheme.HacknetPurple;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "Mint")
+            }
+            else if (ThemeInput == "Mint")
             {
                 Theme = OSTheme.HacknetMint;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "Colamaeleon")
+            }
+            else if (ThemeInput == "Colamaeleon")
             {
                 Theme = OSTheme.Colamaeleon;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "GreenCompact")
+            }
+            else if (ThemeInput == "GreenCompact")
             {
                 Theme = OSTheme.GreenCompact;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "Riptide")
+            }
+            else if (ThemeInput == "Riptide")
             {
                 Theme = OSTheme.Riptide;
                 ThemeManager.switchTheme(os, Theme);
-            } else if (ThemeInput == "Riptide2")
+            }
+            else if (ThemeInput == "Riptide2")
             {
                 Theme = OSTheme.Riptide2;
                 ThemeManager.switchTheme(os, Theme);
-            } else
+            }
+            else
             {
                 os.write("Usage: setTheme: (Theme)\nValid Options: TerminalOnly,Blue,Teal,Yellow,Green,White,Purple,Mint,Colamaeleon,GreenCompact,Riptide,Riptide2");
             }
@@ -1094,7 +1117,7 @@ namespace DebugMod
         public static bool RemoveSongChangerDaemon(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
-            Daemon daemon = computer.getDaemon(typeof (SongChangerDaemon));
+            Daemon daemon = computer.getDaemon(typeof(SongChangerDaemon));
             computer.daemons.Remove(daemon);
             return false;
         }
@@ -1161,8 +1184,7 @@ namespace DebugMod
             computer.idName = "debugMod";
             os.netMap.nodes.Add(computer);
             Dictionary<string, string> dict = new Dictionary<string, string>();
-            Daemon daemon = Pathfinder.Daemon.Instance.CreateInstance("DebugModDaemon", computer, dict);
-            //computer.daemons.Add(daemon);
+            Pathfinder.Computer.Extensions.AddModdedDaemon(computer, "DebugModDaemon");
             os.execute("connect " + computer.ip);
             return false;
         }
@@ -1172,16 +1194,20 @@ namespace DebugMod
             if (args[2] == "basic")
             {
                 computer.admin = new BasicAdministrator();
-            } else if (args[2] == "fastbasic")
+            }
+            else if (args[2] == "fastbasic")
             {
                 computer.admin = new FastBasicAdministrator();
-            } else if (args[2] == "fastprogress")
+            }
+            else if (args[2] == "fastprogress")
             {
                 computer.admin = new FastProgressOnlyAdministrator();
-            } else if (args[2] == "alwaysactive")
+            }
+            else if (args[2] == "alwaysactive")
             {
                 computer.admin = new AlwaysActiveAdmin();
-            } else if (args[2] == "none")
+            }
+            else if (args[2] == "none")
             {
                 computer.admin = null;
             }
@@ -1198,21 +1224,196 @@ namespace DebugMod
             if (computer.admin == new BasicAdministrator())
             {
                 os.write("Basic Admin");
-            } else if (computer.admin == new FastBasicAdministrator())
+            }
+            else if (computer.admin == new FastBasicAdministrator())
             {
                 os.write("Fast Basic Admin");
-            } else if (computer.admin == new FastProgressOnlyAdministrator())
+            }
+            else if (computer.admin == new FastProgressOnlyAdministrator())
             {
                 os.write("Fast Progress Admin");
-            } else if (computer.admin == new AlwaysActiveAdmin())
+            }
+            else if (computer.admin == new AlwaysActiveAdmin())
             {
                 os.write("Always Active Admin");
             }
             else
             {
-                os.write("You may of entered the computer incorrectly or there is no admin for the computer");
+                os.write("You may of entered the computer incorrectly or there is no admin for the computer.");
                 os.write("Usage: viewAdmin (IPORIDORName)");
             }
+            return false;
+        }
+        public static bool ExportGraphic(OS os, List<string> args)
+        {
+            string PathString2 = "C:/Users/groun/OneDrive/Documents/Hacknet Graphics and Sounds/";
+            string FileName = args[1] + ".png";
+            string PathString = System.IO.Path.Combine(PathString2, FileName);
+            try
+            {
+                XNA.Graphics.Texture2D graphic = os.content.Load<XNA.Graphics.Texture2D>(args[1]);
+                System.IO.Stream stream = System.IO.File.Create(PathString);
+                graphic.SaveAsPng(stream, graphic.Width, graphic.Height);
+            }
+            catch (Exception ex)
+            {
+                os.write("Graphics export failed");
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
+        public static bool ReplayPlaneMission(OS os, List<string> args)
+        {
+            Computer DHS = Programs.getComputer(os, "dhs");
+            Computer CrashPlane = Programs.getComputer(os, "dair_crash");
+            Computer SecondaryPlane = Programs.getComputer(os, "dair_secondary");
+            Folder DHSFolder = DHS.files.root.searchForFolder("HomeBase");
+            Folder CrashPlaneFolder = CrashPlane.files.root.searchForFolder("FlightSystems");
+            Folder SecondaryPlaneFolder = SecondaryPlane.files.root.searchForFolder("FlightSystems");
+            AircraftDaemon CrashPlaneDaemon = ((AircraftDaemon)CrashPlane.getDaemon(typeof(AircraftDaemon)));
+            AircraftDaemon SecondaryPlaneDaemon = ((AircraftDaemon)SecondaryPlane.getDaemon(typeof(AircraftDaemon)));
+            if (!os.Flags.HasFlag("dlc_complete") && args.Count == 1)
+            {
+                os.write("You have not completed the dlc yet, if you want spoilers and wish to continue, type this command:");
+                os.write("replayPlaneMission y");
+                return false;
+            }
+            os.homeAssetServerID = "dhsDrop";
+            os.homeNodeID = "dhs";
+            os.currentMission = null;
+            os.delayer.RunAllDelayedActions();
+            os.IsInDLCMode = true;
+            os.allFactions.setCurrentFaction("Bibliotheque", os);
+            DLCHubServer dlcHubServer = (DLCHubServer)Programs.getComputer(os, "dhs").getDaemon(typeof(DLCHubServer));
+            os.currentFaction.playerValue = 1;
+            int num = 10;
+            for (int index = 0; index < num; ++index)
+            {
+                MissionFunctions.runCommand(1, "addRankSilent");
+                if (index + 1 < num)
+                {
+                    os.delayer.RunAllDelayedActions();
+                    dlcHubServer.DelayedActions.InstantlyResolveAllActions(os);
+                    dlcHubServer.ClearAllActiveMissions();
+                }
+            }
+            os.mailicon.isEnabled = false;
+            CrashPlane.ip = "209.15.13.134";
+            SecondaryPlane.ip = "208.73.211.70";
+            if (!CrashPlaneFolder.containsFile("747FlightOps.dll"))
+            {
+                CrashPlaneFolder.files.Add(new FileEntry(PortExploits.ValidAircraftOperatingDLL, "747FlightOps.dll"));
+            }
+            if (!SecondaryPlaneFolder.containsFile("747FlightOps.dll"))
+            {
+                SecondaryPlaneFolder.files.Add(new FileEntry(PortExploits.ValidAircraftOperatingDLL, "747FlightOps.dll"));
+            }
+            CrashPlaneDaemon.IsInCriticalFirmwareFailure = false;
+            CrashPlaneDaemon.CurrentAltitude = 30000;
+            SecondaryPlaneDaemon.IsInCriticalFirmwareFailure = false;
+            SecondaryPlaneDaemon.CurrentAltitude = 30000;
+            DHSFolder.files.Remove(DHSFolder.files[1]);
+            DHSFolder.files.Add(new FileEntry(LongVariables.IRCLog(os), "active.log"));
+            os.Flags.RemoveFlag("dlc_complete");
+            os.Flags.RemoveFlag("dlc_complete_FromUnknown");
+            os.Flags.RemoveFlag("dlc_complete_FromCSEC");
+            os.Flags.RemoveFlag("dlc_complete_FromEntropy");
+            os.Flags.RemoveFlag("DLC_PlaneCrashResponseTriggered");
+            os.Flags.RemoveFlag("DLC_DoubleCrashResponseTriggered");
+            os.Flags.RemoveFlag("DLC_PlaneSaveResponseTriggered");
+            os.Flags.RemoveFlag("DLC_PlaneResult");
+            os.Flags.RemoveFlag("AircraftInfoOverlayDeactivated");
+            os.Flags.RemoveFlag("AircraftInfoOverlayActivated");
+            ComputerLoader.loadMission("Content/DLC/Missions/Airline2/Missions/AirlineMission2_Player.xml");
+            for (int index = 0; index < os.netMap.visibleNodes.Count; index++)
+            {
+                string str = os.PreDLCVisibleNodesCache + (os.PreDLCVisibleNodesCache.Length > 0 ? (object)"," : (object)"") + (object)os.netMap.visibleNodes[index];
+                os.PreDLCVisibleNodesCache = str;
+            }
+            os.execute("loseAllNodes");
+            while (!os.Flags.HasFlag("AircraftInfoOverlayDeactivated"))
+            {
+
+            }
+            DLC1SessionUpgrader.EndDLCSection(os);
+            return false;
+        }
+        public static bool ReplayPlaneMissionSecondary(OS os, List<string> args)
+        {
+            Hacknet.Misc.SessionAccelerator.AccelerateSessionToDLCEND(os);
+            return false;
+        }
+        public static bool TellPeopleYouAreGonnaHackThemOnline(Hacknet.OS os, List<string> args)
+        {
+            os.traceTracker.start(200f);
+            return false;
+        }
+        public static bool MyFatherIsCCC(OS os, List<string> args)
+        {
+            os.traceTracker.start(5f);
+            return false;
+        }
+        public static bool CantTouchThis(OS os, List<string> args)
+        {
+            os.traceTracker.start(99999f);
+            return false;
+        }
+        public static bool ViewFaction(OS os, List<string> args)
+        {
+            os.write(os.currentFaction.name);
+            return false;
+        }
+        public static bool ViewPlayerVal(OS os, List<string> args)
+        {
+            os.write(Convert.ToString(os.currentFaction.playerValue));
+            return false;
+        }
+        public static bool KaguyaTrialEffect(OS os, List<string> args)
+        {
+            int y = 0;
+            Rectangle location = new Rectangle(os.ram.bounds.X, y, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
+            DLCIntroExe exe = new DLCIntroExe(location, os, null);
+            AccessBypass.CallPrivateMethod<DLCIntroExe>(exe, "AddRadialMailLine");
+            return false;
+        }
+        public static bool KaguyaTrialEffect2(OS os, List<string> args)
+        {
+            float timeInExplosion = 0f;
+            int y = 0;
+            Rectangle location = new Rectangle(os.ram.bounds.X, y, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
+            DLCIntroExe exe = new DLCIntroExe(location, os, null);
+            AccessBypass.CallPrivateMethod<DLCIntroExe>(exe, "UpdateUIFlickerIn");
+            return false;
+        }
+        public static bool KaguyaTrialEffect3(OS os, List<string> args)
+        {
+            int y = 0;
+            Rectangle location = new Rectangle(os.ram.bounds.X, y, RamModule.MODULE_WIDTH, (int)OS.EXE_MODULE_HEIGHT);
+            DLCIntroExe exe = new DLCIntroExe(location, os, null);
+            AccessBypass.CallPrivateMethod<DLCIntroExe>(exe, "CompleteMailPhaseOut");
+            return false;
+        }
+        public static bool AntiTrace(OS os, List<string> args)
+        {
+            while (!os.Flags.HasFlag("Stop_Anti_Trace"))
+            {
+                os.traceTracker.stop();
+            }
+            os.Flags.RemoveFlag("Stop_Anti_Trace");
+            return false;
+        }
+        public static bool StopAntiTrace(OS os, List<string> args)
+        {
+            os.Flags.AddFlag("Stop_Anti_Trace");
+            return false;
+        }
+        public static bool RunHackerScriptFunction(OS os, List<string> args)
+        {
+            string sourceComp = args[1];
+            string targetComp = args[2];
+            string command = args[3];
+            string[] functionArgs = new string[] { sourceComp, targetComp, command };
+
             return false;
         }
     }
