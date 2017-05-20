@@ -1,3 +1,9 @@
+# This mod has temporarily discontinued
+
+The reason why I did this is I ran out of ideas and I want to take a break from programming.
+You can help by suggesting features or make a pull request. I'll continue this mod when I
+finish my break and get more ideas.
+
 # DebugMod
 
 This is a mod for Hacknet that allows the user to use various debug commands
