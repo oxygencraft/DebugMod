@@ -1,7 +1,7 @@
 # This mod has been discontinued
 
 The reason why I did this is I ran out of ideas.
-Only occasional bug fixes will be made
+Only occasional bug fixes will be made.
 
 # DebugMod
 
