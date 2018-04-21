@@ -8,7 +8,7 @@ namespace DebugMod
 {
     public class DebugMod : Pathfinder.ModManager.IMod
     {
-        public static string version = "2.0-beta3";
+        public static string version = "2.0-beta2.5b
         public static string newVersion = GetVersion();
         public string GetIdentifier()
         {
@@ -42,6 +42,7 @@ namespace DebugMod
             Command.Handler.RegisterCommand("solveFirewall", Commands.SolveFirewall, autoComplete:true); // Works
             Command.Handler.RegisterCommand("getAdmin", Commands.GetAdmin, autoComplete:true); // Works
             Command.Handler.RegisterCommand("loseAdmin", Commands.LoseAdmin, autoComplete:true); // Works
+
 
             if (DebugEnabled)
             {

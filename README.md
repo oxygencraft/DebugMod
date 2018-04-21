@@ -9,14 +9,20 @@ Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 # How to report issues:
 
 1. Search before opening, someone else may of opened it.
-2. Make sure that your game files aren't broken before
+2. Make sure that your game files aren't broken before reporting the issue.
 3. Tell me how to replicate the bug.
+
+# Empty exception and event listener call failed:
+
+There isn't much I can do about it, it's a pathfinder bug not calling the command method.
 
 # Warning:
 
 Use this at your own risk, this may corrupt saves.
 
-# Beta Commands:
+# Beta Commands (Download the beta build from releases):
+
+NameORIDORIP or similar means you can put the name of the computer, id of the computer or the ip of the computer
 
 showFlags - Shows all the flags for save
 
@@ -45,6 +51,14 @@ quit - Exits the game
 deleteLogs - Auto deletes logs from the computer in argument 1: Usage: deleteLogs (NameORIPORID)
 
 forkbombProof - Makes you forkbomb proof by setting your ram 1 above the forkbomb (1000000000) ram target
+
+showIPNamesAndID - Shows the IP, Name and the ID of argument 1: Usage: showIPNamesAndID (IPORIDORName)
+
+changeAdmin - Changes the admin of the computer in argument 1: Usage: changeAdmin (IPORIDORName) (Admin)
+
+Valid Options: basic,fastbasic,fastprogress,alwaysactive,none
+
+viewAdmin - Outputs to the console of the admin of argument 1: Usage: viewAdmin (IPORIDORName)
 
 # New Commands:
 
@@ -98,9 +112,9 @@ revealAll - Reveals all computers in game save
 
 addIRCMessage - Adds IRC Message to server: Usage: addIRCMessage (ComputerID) (Author) (Message)
 
-strikerAttack - Starts Striker hack
+strikerAttack - Starts Striker hack (May be bugged for some users)
 
-themeAttack - Starts Naix hack
+themeAttack - Starts Naix hack (May be bugged for some users)
 
 callThePoliceSoTheyCanTraceYou - 100 sec trace
 
@@ -156,7 +170,7 @@ closePort - Closes port on the computer you are connected to: Usage: closePort (
 
 removeProxy - Removes proxy from the computer you are connected to
 
-playSFX - Plays a sound effect, root directory is Content: Usage: playSFX (PathToSoundEffect eg. SFX/EmailSound.xnb)
+playSFX - Plays a sound effect, root directory is Content: Usage: playSFX (PathToSoundEffect eg. SFX/EmailSound)
 
 deleteWhitelistDLL - Deletes authenticator.dll from a whitelist server or whitelist protected server: Usage: DeleteWhitelistDLL (IPOrIDOrName)
 
