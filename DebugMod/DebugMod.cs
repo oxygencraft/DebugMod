@@ -8,7 +8,7 @@ namespace DebugMod
 {
     public class DebugMod : Pathfinder.ModManager.IMod
     {
-        public static string version = "2.0-beta2.5b
+        public static string version = "2.0-beta2.5c";
         public static string newVersion = GetVersion();
         public string GetIdentifier()
         {
