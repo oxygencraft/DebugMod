@@ -8,6 +8,7 @@ using Pathfinder.Daemon;
 using Hacknet;
 using Hacknet.Gui;
 using Pathfinder;
+using Hacknet.UIUtils;
 
 namespace DebugMod
 {
@@ -132,8 +133,16 @@ optional, you can skip it by typing null.";
         private void GetInfoTextBox(string command, string textBoxTitle, Rectangle rect, Instance instance, SpriteBatch sb)
         {
             OS os = instance.os;
-            string input = TextBox.doTextBox(423283428, 50, 100, 50, 1, textBoxTitle, GuiData.smallfont);
-            os.execute(command + " " + input);
+            string textbox = TextBox.doTerminalTextField(18835235, 250, 250, 35, 30, 1, textBoxTitle, GuiData.smallfont);
+            throw new NotImplementedException();
+            if (textbox == null)
+            {
+                os.write("IT DOESN'T WORK :(");
+            }
+            else
+            {
+                os.write("IT WORKS IT WORKS: " + textbox);
+            }
         }
 
         public void InitFiles(Instance instance) // IDK what this does, maybe creates the files, in that case no
@@ -158,7 +167,7 @@ optional, you can skip it by typing null.";
 
         public void OnNavigatedTo(Instance instance) // Won't need this
         {
-            State = DebugModState.DebugPage;
+            State = DebugModState.HomePage;
         }
 
         public void OnUserAdded(Instance instance, string name, string pass, byte type) // Won't need this

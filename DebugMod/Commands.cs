@@ -7,6 +7,8 @@ using System.Text;
 using XNA = Microsoft.Xna.Framework;
 using System.Reflection;
 using Microsoft.Xna.Framework;
+using Pathfinder;
+using Pathfinder.Port;
 
 namespace DebugMod
 {
@@ -1033,26 +1035,17 @@ namespace DebugMod
             ComputerLoader.loadPortsIntoComputer(args[2], computer);
             return false;
         }
-        /*public static bool RemovePortFromComp(OS os, List<string> args) Not used, probably should be removed
+        public static bool AddCustomPortToComp(OS os, List<string> args)
         {
-            Computer computer = Programs.getComputer(os, args[1]);
-            computer.ports.Remove(Convert.ToInt32(args[2]));
+            
             return false;
         }
-        public static bool AddCustomPortToComp(OS os, List<string> args) Untested, test and release when pathfinder 3.0 comes out
+        public static bool RemoveCustomPortFromComp(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
-            Pathfinder.Port.PortType port = new Pathfinder.Port.PortType(args[2], Convert.ToUInt32(args[3]));
-            port.AssignTo(computer, false);
-            Pathfinder.Port.Handler.AddPort(port.PortId, port);
+            Pathfinder.Game.Computer.Extensions.GetModdedPortList(computer);
             return false;
         }
-        public static bool RemoveCustomPortFromComp(OS os, List<string> args) IDK how to do this.......
-        {
-            Computer computer = Programs.getComputer(os, args[1]);
-            Pathfinder.Computer.Extensions.GetModdedPortList(computer);
-            return false;
-        } */
         public static bool AddSongChangerDaemon(OS os, List<string> args)
         {
             Computer computer = Programs.getComputer(os, args[1]);
@@ -1184,7 +1177,7 @@ namespace DebugMod
             computer.idName = "debugMod";
             os.netMap.nodes.Add(computer);
             Dictionary<string, string> dict = new Dictionary<string, string>();
-            Pathfinder.Computer.Extensions.AddModdedDaemon(computer, "DebugModDaemon");
+            Pathfinder.Game.Computer.Extensions.AddModdedDaemon(computer, "DebugModDaemon");
             os.execute("connect " + computer.ip);
             return false;
         }
@@ -1244,24 +1237,7 @@ namespace DebugMod
             }
             return false;
         }
-        public static bool ExportGraphic(OS os, List<string> args)
-        {
-            string PathString2 = "C:/Users/groun/OneDrive/Documents/Hacknet Graphics and Sounds/";
-            string FileName = args[1] + ".png";
-            string PathString = System.IO.Path.Combine(PathString2, FileName);
-            try
-            {
-                XNA.Graphics.Texture2D graphic = os.content.Load<XNA.Graphics.Texture2D>(args[1]);
-                System.IO.Stream stream = System.IO.File.Create(PathString);
-                graphic.SaveAsPng(stream, graphic.Width, graphic.Height);
-            }
-            catch (Exception ex)
-            {
-                os.write("Graphics export failed");
-                Console.WriteLine(ex.Message);
-            }
-            return false;
-        }
+
         public static bool ReplayPlaneMission(OS os, List<string> args)
         {
             Computer DHS = Programs.getComputer(os, "dhs");
@@ -1413,7 +1389,91 @@ namespace DebugMod
             string targetComp = args[2];
             string command = args[3];
             string[] functionArgs = new string[] { sourceComp, targetComp, command };
-
+            
+            return false;
+        }
+        public static bool AircraftNuke(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            //AircraftDaemon computerdaemon = (AircraftDaemon)computer.getDaemon(typeof(AircraftDaemon));
+            AircraftDaemon computerdaemon = new AircraftDaemon(computer, os, "OxyNuke", new Vector2(20f, 20f), new Vector2(50f, 50f), 50f);
+            computer.daemons.Add(computerdaemon);
+            computerdaemon.isListed = false;
+            computerdaemon.IsInCriticalFirmwareFailure = true;
+            computerdaemon.CallPrivateMethod<AircraftDaemon>("CrashAircraft", null);
+            computerdaemon.StartReloadFirmware();
+            return false;
+        }
+        public static bool AddAircraftDaemon(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            float float1;
+            float float2;
+            float float3;
+            float float4;
+            float float5;
+            float.TryParse(args[3], out float1);
+            float.TryParse(args[4], out float2);
+            float.TryParse(args[5], out float3);
+            float.TryParse(args[6], out float4);
+            float.TryParse(args[7], out float5);
+            Vector2 origin = new Vector2(float1, float2);
+            Vector2 dest = new Vector2(float3, float4);
+            AircraftDaemon daemon = new AircraftDaemon(computer, os, args[2], origin, dest, float5);
+            computer.daemons.Add(daemon);
+            return false;
+        }
+        public static bool SetAircraftAltitude(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            AircraftDaemon aircraft = (AircraftDaemon)computer.getDaemon(typeof(AircraftDaemon));
+            aircraft.CurrentAltitude = Convert.ToDouble(args[2]);
+            return false;
+        }
+        public static bool SetAircraftSpeed(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            AircraftDaemon aircraft = (AircraftDaemon)computer.getDaemon(typeof(AircraftDaemon));
+            float speed;
+            float.TryParse(args[2], out speed);
+            aircraft.SetPrivateField("currentAirspeed", speed);
+            return false;
+        }
+        public static bool SetAircraftRateOfClimb(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            AircraftDaemon aircraft = (AircraftDaemon)computer.getDaemon(typeof(AircraftDaemon));
+            float climbrate;
+            float.TryParse(args[2], out climbrate);
+            aircraft.SetPrivateField("rateOfClimb", climbrate);
+            return false;
+        }
+        public static bool SetAircraftFirmwareFailure(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            AircraftDaemon aircraft = (AircraftDaemon)computer.getDaemon(typeof(AircraftDaemon));
+            aircraft.IsInCriticalFirmwareFailure = true;
+            return false;
+        }
+        public static bool SetAircraftFirmwareSucessful(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            AircraftDaemon aircraft = (AircraftDaemon)computer.getDaemon(typeof(AircraftDaemon));
+            aircraft.IsInCriticalFirmwareFailure = false;
+            return false;
+        }
+        public static bool SetAircraftProgress(OS os, List<string> args)
+        {
+            Computer computer = Programs.getComputer(os, args[1]);
+            AircraftDaemon aircraft = (AircraftDaemon)computer.getDaemon(typeof(AircraftDaemon));
+            float progress;
+            float.TryParse(args[2], out progress);
+            aircraft.SetPrivateField("FlightProgress", progress);
+            return false;
+        }
+        public static bool KaguyaTrialEffect5(OS os, List<string> args)
+        {
+            SFX.addCircle(os.mailicon.pos + new Vector2(20f, 6f), Utils.AddativeRed * 0.8f, 100f);
             return false;
         }
     }

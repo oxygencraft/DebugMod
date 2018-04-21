@@ -43,12 +43,10 @@
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hacknet\FNA.dll</HintPath>
     </Reference>
     <Reference Include="HacknetPathfinder">
-      <HintPath>..\lib\HacknetPathfinder.exe</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hacknet\HacknetPathfinder.exe</HintPath>
     </Reference>
     <Reference Include="Pathfinder">
-      <HintPath>..\lib\Pathfinder.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hacknet\Pathfinder.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
