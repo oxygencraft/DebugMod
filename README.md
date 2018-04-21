@@ -1,8 +1,7 @@
-# This mod has temporarily been discontinued
+# This mod has been discontinued
 
-The reason why I did this is I ran out of ideas and I want to take a break from programming.
-You can help by suggesting features or make a pull request. I'll continue this mod when I
-finish my break and get more ideas.
+The reason why I did this is I ran out of ideas.
+Only occasional bug fixes will be made
 
 # DebugMod
 
