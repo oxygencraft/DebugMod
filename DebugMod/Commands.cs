@@ -17,111 +17,21 @@ namespace DebugMod
 
         public static bool OpenAllPorts(OS os, List<string> args)
         {
-            string ip = os.thisComputer.ip;
             Computer computer = os.connectedComp;
-            Console.WriteLine(computer.ports);
-            if (computer.ports.Contains(22))
+            foreach (var port in computer.ports)
             {
-                computer.openPort(22, ip);
-            }
-            if (computer.ports.Contains(21))
-            {
-                computer.openPort(21, ip);
-            }
-            if (computer.ports.Contains(25))
-            {
-                computer.openPort(25, ip);
-            }
-            if (computer.ports.Contains(80))
-            {
-                computer.openPort(80, ip);
-            }
-            if (computer.ports.Contains(1433))
-            {
-                computer.openPort(1433, ip);
-            }
-            if (computer.ports.Contains(3724))
-            {
-                computer.openPort(3724, ip);
-            }
-            if (computer.ports.Contains(104))
-            {
-                computer.openPort(104, ip);
-            }
-            if (computer.ports.Contains(3659))
-            {
-                computer.openPort(3659, ip);
-            }
-            if (computer.ports.Contains(192))
-            {
-                computer.openPort(192, ip);
-            }
-            if (computer.ports.Contains(6881))
-            {
-                computer.openPort(6881, ip);
-            }
-            if (computer.ports.Contains(443))
-            {
-                computer.openPort(443, ip);
-            }
-            if (computer.ports.Contains(9418))
-            {
-                computer.openPort(9418, ip);
+                if (!computer.isPortOpen(port))
+                    computer.openPort(port, os.thisComputer.ip);
             }
             return false;
         }
         public static bool CloseAllPorts(OS os, List<string> args)
         {
-            string ip = os.thisComputer.ip;
             Computer computer = os.connectedComp;
-            Console.WriteLine(computer.ports);
-            if (computer.ports.Contains(22))
+            foreach (var port in computer.ports)
             {
-                computer.closePort(22, ip);
-            }
-            if (computer.ports.Contains(21))
-            {
-                computer.closePort(21, ip);
-            }
-            if (computer.ports.Contains(25))
-            {
-                computer.closePort(25, ip);
-            }
-            if (computer.ports.Contains(80))
-            {
-                computer.closePort(80, ip);
-            }
-            if (computer.ports.Contains(1433))
-            {
-                computer.closePort(1433, ip);
-            }
-            if (computer.ports.Contains(3724))
-            {
-                computer.closePort(3724, ip);
-            }
-            if (computer.ports.Contains(104))
-            {
-                computer.closePort(104, ip);
-            }
-            if (computer.ports.Contains(3659))
-            {
-                computer.closePort(3659, ip);
-            }
-            if (computer.ports.Contains(192))
-            {
-                computer.closePort(192, ip);
-            }
-            if (computer.ports.Contains(6881))
-            {
-                computer.closePort(6881, ip);
-            }
-            if (computer.ports.Contains(443))
-            {
-                computer.closePort(443, ip);
-            }
-            if (computer.ports.Contains(9418))
-            {
-                computer.closePort(9418, ip);
+                if (computer.isPortOpen(port))
+                    computer.closePort(port, os.thisComputer.ip);
             }
             return false;
         }
