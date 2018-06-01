@@ -1,6 +1,6 @@
 # This mod has been discontinued
 
-The reason why I did this is I ran out of ideas and I'm working on an MP mod now, you can check it out [here](https://github.com/Arkhist/Hack-On-Net)
+The reason why I did this is I ran out of ideas and I'm working on an MP mod now (As of June 2018), you can check it out [here](https://github.com/Arkhist/Hack-On-Net)
 
 Only occasional bug fixes and small improvements will be made.
 
