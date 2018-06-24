@@ -12,6 +12,9 @@ To report bugs or feature requests, open an issue in the issues section
 
 Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 
+If you need an updated command lists, sorry but I'm not going to provide it because I'm too lazy.
+Look at the source if you need the new commands list (oh, you'll also find a secret command but it's not that impressive)
+
 # How to report issues:
 
 1. Search before opening, someone else may of opened it.
@@ -20,7 +23,9 @@ Requires Hacknet Pathfinder: https://github.com/Arkhist/Hacknet-Pathfinder
 
 # Empty exception and event listener call failed:
 
-There isn't much I can do about it, it's a pathfinder bug not calling the command method.
+~~There isn't much I can do about it, it's a pathfinder bug not calling the command method.~~
+
+I don't know what's the issue but I'm not going to fix it as the mod is discontinued
 
 # Warning:
 
